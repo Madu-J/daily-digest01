@@ -10,11 +10,15 @@ body {
 }
 
 .red-o {
-    color: #E84610;
+    color: #f59e08;
 }
 
 .thin {
     font-weight: 300;
+}
+
+#navbarText {
+    margin-left: 350px;
 }
 
 .light-bg {

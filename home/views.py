@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404, reverse
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic, View
 from django.http import HttpResponseRedirect
-from .models import Post
+from .models import Post, Comment
 from .forms import CommentForm
 
 
@@ -35,9 +38,10 @@ class PostDetail(View):
         )
     
     def post(self, request, slug, *args, **kwargs):
+
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
-        comments = post.comments.filter(approved=True).order_by("created_on")
+        comments = post.comments.filter(approved=True).order_by("-created_on")
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -50,6 +54,7 @@ class PostDetail(View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
+            messages.success(self.request, 'Comment successfully added')
         else:
             comment_form = CommentForm()
 
@@ -76,3 +81,18 @@ class PostLike(View):
             post.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+class DeleteComment(
+        LoginRequiredMixin, generic.DeleteView):
+
+    """
+    This view is used to allow logged in users to delete their own comments
+    """
+    model = Comment
+    template_name = 'delete_comment.html'
+    success_message = "Comment deleted successfully"
+
+    def get_success_url(self):
+        """ Return to post detail view when comment deleted sucessfully"""
+        post = self.object.post
+        return reverse('post_detail', kwargs={'slug': post_detail.slug})

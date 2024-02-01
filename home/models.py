@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 from cloudinary.models import CloudinaryField
 
 STATUS = ((0, "Draft"), (1, "Published"))
@@ -28,6 +29,7 @@ class Post(models.Model):
         return self.likes.count()
 
 class Comment(models.Model):
+    """Model for Comment"""
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comment')
     name = models.CharField(max_length=80)
     email = models.EmailField()

@@ -23,7 +23,7 @@
 <body class="d-flex flex-column h-100 main-bg">
 
     <!-- Navigation -->
-
+    <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">Daily |</span>
@@ -62,12 +62,6 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'news' %}">News</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'tech' %}">Tech</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'sports' %}">Sports</a>
-                </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
@@ -81,12 +75,13 @@
                 </li>
                 {% endif %}
             </ul>
+        </div>
                 <span class="navbar-text text-muted">
-                     great!
+                     |
                 </span>
             </div>
-        </div>
     </nav>
+</header>
     
     <div class="container">
         <div class="row">

@@ -95,6 +95,33 @@ class CommentList(View):
         )
 
 
+class AddStory(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
+    """This view is used to allow logged in users to create a story"""
+    form_class = CommentForm
+    template_name = 'add_story.html'
+    success_message = "%(calculated_field)s was created successfully"
+
+    def form_valid(self, form):
+        """
+        This method is called when valid form data has been posted.
+        The signed in user is set as the author of the story.
+        """
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def get_success_message(self, cleaned_data):
+        """
+        This function overrides the get_success_message() method to add
+        the story title into the success message.
+        source: https://docs.djangoproject.com/en/4.0/ref/contrib/messages/
+        """
+        
+        return self.success_message % dict(
+            cleaned_data,
+            calculated_field=self.object.title,
+        )
+
+
 class UpdateComment(
         LoginRequiredMixin, UserPassesTestMixin,
         SuccessMessageMixin, generic.UpdateView):

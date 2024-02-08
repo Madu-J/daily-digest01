@@ -65,6 +65,19 @@
     </div>
     <div class="row">
         <div class="col">
+            <h3>Add Story</h3>
+            <p>Posting as: {{ user.username }}</p>
+            <form method="post" class="add-story">
+                <div class="modal-body">
+                    {{ comment_form | crispy }}
+                    {% csrf_token %}
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-dark btn-sm">
+                        <span><i class="fas fa-calendar-plus pr-1"></i></span>
+                    </button>
+                </div>
+            </form>
             <hr>
         </div>
     </div>
@@ -87,6 +100,8 @@
                             <a href="{% url 'update_comment' comment.id %}" aria-label="edit-comment"><i
                                     class="fas fa-edit link-primary"></i></a>
                             <a href="{% url 'delete_comment' comment.id %}" aria-label="delete-comment"><i
+                                    class="fas fa-times"></i></a>
+                            <a href="{% url 'add_story' comment.id %}" aria-label="add-story"><i
                                     class="fas fa-times"></i></a>
                         </span>
                             {% endif %}

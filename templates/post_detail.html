@@ -69,12 +69,12 @@
             <p>Posting as: {{ user.username }}</p>
             <form method="post" class="add-story">
                 <div class="modal-body">
-                    {{ comment_form | crispy }}
+                    {{ story_form | crispy }}
                     {% csrf_token %}
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-outline-dark btn-sm">
-                        <span><i class="fas fa-calendar-plus pr-1"></i></span>
+                        <span><i class="submit"></i>Submit</span>
                     </button>
                 </div>
             </form>

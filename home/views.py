@@ -34,7 +34,8 @@ class PostDetail(View):
                 "comments": comments,
                 "commented": False,
                 "liked": liked,
-                "comment_form": CommentForm()
+                "comment_form": CommentForm(),
+                "story_form": StoryForm()
             },
         )
     
@@ -48,6 +49,7 @@ class PostDetail(View):
             liked = True
 
         comment_form = CommentForm(data=request.POST)
+        story_form = StoryForm(data=request.POST)
 
         if comment_form.is_valid():
             comment_form.instance.email = request.user.email
@@ -97,7 +99,7 @@ class CommentList(View):
 
 class AddStory(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     """This view is used to allow logged in users to create a story"""
-    form_class = CommentForm
+    form_class = StoryForm
     template_name = 'add_story.html'
     success_message = "%(calculated_field)s was created successfully"
 

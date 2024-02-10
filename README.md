@@ -426,7 +426,7 @@ When content is shared on social media, it includes a link back to the website. 
 | I want to be able to report content that I find offensive, unsafe or inappropriate. | For now it is possible via the Contact Form. |
 | I want the content to be moderated, so I don't need to report it. | All the content undergoes moderation before being published on the website. |
 | I want to be able to write comments to give my opinion on a particular post. | Users can leave their comments in the detailed post view. |
-| I want to be able to update and delete my posts. | This is still in progress
+| I want to be able to update and delete my posts. | Users can edit or delete their story or comment. 
 | I want to be able to reset my password if I forget it. | Password reset is available for users who register with their email address.
 
 ## Manual Testing

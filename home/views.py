@@ -124,6 +124,20 @@ class AddStory(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
         )
 
 
+class Story(LoginRequiredMixin, generic.ListView):
+    """
+    This view is used to display a list of story created by the logged in
+    user.
+    """
+    model = Story
+    template_name = 'story.html'
+    paginate_by = 6
+
+    def get_queryset(self):
+        """Override get_queryset to filter by user"""
+        return story.objects.filter(author=self.request.user)
+
+
 class UpdateComment(
         LoginRequiredMixin, UserPassesTestMixin,
         SuccessMessageMixin, generic.UpdateView):

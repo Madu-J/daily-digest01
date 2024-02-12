@@ -49,7 +49,7 @@ class Comment(models.Model):
 class Story(models.Model):
     """Story model"""
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="blog_post")
+        User, on_delete=models.CASCADE, related_name="user_author")
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name="story")
     body = models.TextField()
@@ -59,4 +59,4 @@ class Story(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
-        return f"Add Story {self.title} by {self.user}"
+        return f"Add Story {self.post.title} by {self.user}"

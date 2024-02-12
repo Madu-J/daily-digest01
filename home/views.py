@@ -5,8 +5,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.views import generic, View
 from django.http import HttpResponseRedirect
-from .models import Post, Comment
-from .forms import CommentForm
+from .models import Post, Comment, Story
+from .forms import CommentForm, StoryForm
 
 
 class PostList(generic.ListView):
@@ -108,7 +108,7 @@ class AddStory(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
         This method is called when valid form data has been posted.
         The signed in user is set as the author of the story.
         """
-        form.instance.author = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
     def get_success_message(self, cleaned_data):
@@ -120,8 +120,11 @@ class AddStory(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
         
         return self.success_message % dict(
             cleaned_data,
-            calculated_field=self.object.title,
+            calculated_field=self.object.post.title,
         )
+
+    def get_success_url(self):
+        return reverse('add_story')
 
 
 class Story(LoginRequiredMixin, generic.ListView):
@@ -135,7 +138,7 @@ class Story(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         """Override get_queryset to filter by user"""
-        return story.objects.filter(author=self.request.user)
+        return Story.objects.filter(user=self.request.user)
 
 
 class UpdateComment(

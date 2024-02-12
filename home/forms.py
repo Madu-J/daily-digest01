@@ -1,6 +1,6 @@
 from django import forms
 from django_summernote.widgets import SummernoteWidget
-from .models import Comment
+from .models import Comment, Story
 
 class CommentForm(forms.ModelForm):
     """ Create Comment form """
@@ -24,4 +24,4 @@ class StoryForm(forms.ModelForm):
         Get story model, choose fields to display and add summernote widget
         """
         model = Story
-        fields = ('body',)
+        fields = ('post', 'body',)

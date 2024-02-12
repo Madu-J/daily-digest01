@@ -74,30 +74,22 @@ class PostDetail(View):
         )
 
 
-class CommentList(View):
+class CommentList(LoginRequiredMixin, generic.ListView):
+    """
+    This view is used to display a list of comments by the logged in
+    user.
+    """
+    model = Post
+    template_name = 'my_profile.html'
+    paginate_by = 6
 
-    def get(self, request, slug, *args, **kwargs):
-        queryset = Post.objects.filter(status=1)
-        post = get_object_or_404(queryset, slug=slug)
-        comments = post.comment.order_by("created_on")
-        liked = False
-        if post.likes.filter(id=self.request.user.id).exists():
-            liked = True
+    def get_queryset(self):
+        """Override get_queryset to filter by user"""
+        return Comment.objects.filter(author=self.request.user)
 
-        return render(
-            request,
-            "post_detail.html",
-            {
-                "post": post,
-                "comments": comments,
-                "commented": False,
-                "liked": liked,
-                "comment_form": CommentForm()
-            },
-        )
-
-
-class AddStory(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
+    
+class AddStory(
+    LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     """This view is used to allow logged in users to create a story"""
     form_class = StoryForm
     template_name = 'add_story.html'
@@ -127,7 +119,8 @@ class AddStory(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
         return reverse('add_story')
 
 
-class Story(LoginRequiredMixin, generic.ListView):
+class Story(
+    LoginRequiredMixin, generic.ListView):
     """
     This view is used to display a list of story created by the logged in
     user.

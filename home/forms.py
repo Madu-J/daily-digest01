@@ -10,7 +10,7 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
-        fields = ('body',)
+        fields = ('name', 'body',)
 
 
 class StoryForm(forms.ModelForm):
@@ -21,7 +21,7 @@ class StoryForm(forms.ModelForm):
 
     class Meta:
         """
-        Get story model, choose fields to display and add summernote widget
+        Get story model, choose fields to display
         """
         model = Story
-        fields = ('post', 'body',)
+        fields = ('user', 'post', 'body')

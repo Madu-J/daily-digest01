@@ -87,7 +87,7 @@ class CommentList(LoginRequiredMixin, generic.ListView):
         """Override get_queryset to filter by user"""
         return Comment.objects.filter(author=self.request.user)
 
-    
+
 class AddStory(
     LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     """This view is used to allow logged in users to create a story"""
@@ -116,7 +116,7 @@ class AddStory(
         )
 
     def get_success_url(self):
-        return reverse('add_story')
+        return reverse('add_story.html')
 
 
 class Story(

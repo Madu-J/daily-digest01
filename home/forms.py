@@ -25,3 +25,8 @@ class StoryForm(forms.ModelForm):
         """
         model = Story
         fields = ('user', 'post', 'body')
+    
+    widgets = {
+            'method': SummernoteWidget(),
+            'ingredients': SummernoteWidget(),
+        }

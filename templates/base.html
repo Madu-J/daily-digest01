@@ -1,4 +1,5 @@
 {% load static %}
+{% load cloudinary %}
 
 <!DOCTYPE html>
 <html class="h-100">
@@ -26,7 +27,7 @@
     <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
-            <a id="heading" class="navbar-brand" href="{% url 'home' %}"><span class="brand">Daily |</span>
+            <a id="heading" class="navbar-brand" href="{% url 'home' %}"><span class="brand">Daily </span>
                 <span class="red-o">Digest</span></span></span></a>
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -47,7 +48,7 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'add_story' %}">Add Stories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'my_profile' %}">Profile</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'user_profile' %}">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>

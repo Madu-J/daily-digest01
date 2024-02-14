@@ -4,9 +4,17 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.views import generic, View
+from django.views.given import DetailView
 from django.http import HttpResponseRedirect
 from .models import Post, Comment, Story
 from .forms import CommentForm, StoryForm
+
+
+class UserProfileView(DetailView):
+
+    model = Profile
+    template_name = user_profile.html
+
 
 
 class PostList(generic.ListView):
@@ -69,27 +77,13 @@ class PostDetail(View):
                 "comments": comments,
                 "commented": True,
                 "liked": liked,
-                "comment_form": CommentForm()
+                "comment_form": CommentForm(),
+                "story_form": StoryForm()
             },
         )
 
 
-class CommentList(LoginRequiredMixin, generic.ListView):
-    """
-    This view is used to display a list of comments by the logged in
-    user.
-    """
-    model = Post
-    template_name = 'my_profile.html'
-    paginate_by = 6
-
-    def get_queryset(self):
-        """Override get_queryset to filter by user"""
-        return Comment.objects.filter(author=self.request.user)
-
-
-class AddStory(
-    LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
+class AddStory(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     """This view is used to allow logged in users to create a story"""
     form_class = StoryForm
     template_name = 'add_story.html'
@@ -109,18 +103,13 @@ class AddStory(
         the story title into the success message.
         source: https://docs.djangoproject.com/en/4.0/ref/contrib/messages/
         """
-        
         return self.success_message % dict(
             cleaned_data,
-            calculated_field=self.object.post.title,
+            calculated_field=self.object.title,
         )
 
-    def get_success_url(self):
-        return reverse('add_story.html')
 
-
-class Story(
-    LoginRequiredMixin, generic.ListView):
+class Story(LoginRequiredMixin, generic.ListView):
     """
     This view is used to display a list of story created by the logged in
     user.
@@ -134,10 +123,7 @@ class Story(
         return Story.objects.filter(user=self.request.user)
 
 
-class UpdateComment(
-        LoginRequiredMixin, UserPassesTestMixin,
-        SuccessMessageMixin, generic.UpdateView):
-
+class UpdateComment(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, generic.UpdateView):
     """
     This view is used to allow logged in users to edit their own comments
     """
@@ -168,9 +154,7 @@ class UpdateComment(
         return reverse_lazy('post_detail', kwargs={'slug': post.slug})
 
 
-class DeleteComment(
-        LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
-
+class DeleteComment( LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     """
     This view is used to allow logged in users to delete their own comments
     """
@@ -203,7 +187,6 @@ class DeleteComment(
 
 
 class PostLike(View):
-    
     def post(self, request, slug, *args, **kwargs):
         post = get_object_or_404(Post, slug=slug)
         if post.likes.filter(id=request.user.id).exists():

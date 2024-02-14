@@ -151,7 +151,7 @@ User Acceptance Criteria based on the user stories:
 
 ### Home Page
 
-![](home-page)
+![Home-Page](media/Screenshot 2024-02-14 002311.png)
 
 - Displays the main purpose and topic of the site.
 - Addresses questions and doubts the first-time users might have and provides a registration form.
@@ -175,7 +175,7 @@ User Acceptance Criteria based on the user stories:
 
 ### Add story Page
 
-![](addstory.png)
+![Add-story](media/Screenshot 2024-02-14 002746.png)
 
 - Allows user to to share their stories.
 
@@ -191,7 +191,7 @@ User Acceptance Criteria based on the user stories:
 
    ### Sign Up Page
 
-![](signup.png)
+![Sign Up](media/signup.png)
 
    > - Allows user to sign up.
 
@@ -206,7 +206,7 @@ User Acceptance Criteria based on the user stories:
 
 ### Sign In Page
 
-![](login.png)
+![](media/signin.png)
 
 - Allows to sign in
 
@@ -221,7 +221,7 @@ User Acceptance Criteria based on the user stories:
 
 ### Posts Page
 
-![](home-page.png)
+![Home](media/home.png)
 
 - Shows posts.
 - Allows users to easily find and access posts.
@@ -266,7 +266,7 @@ User Acceptance Criteria based on the user stories:
 
 ### Create/Update Post Page
 
-![](readme/create-post.png)
+![](media/comment-sectoion.png)
 
 - Creates a new post.
 - Allows updating an existing post.

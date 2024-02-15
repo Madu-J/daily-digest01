@@ -45,18 +45,16 @@ class Comment(models.Model):
     def __str__(self):
         return f"Comment {self.name} by {self.name}"
 
-
-class Story(models.Model):
-    """Story model"""
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="user_author")
-    post = models.ForeignKey(
-        Post, on_delete=models.CASCADE, related_name="story")
-    body = models.TextField()
-    created_on = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        ordering = ["created_on"]
-
+        
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE) 
+    bio = models.TextField()
+    profile_pic = models.ImageField(null=True, blank=True, upload_to ="images/profile/")
+    website_url = models.CharField(max_length=255, null=True, blank=True,)
+    facebook_url = models.CharField(max_length=255, null=True, blank=True,)
+    twitter_url = models.CharField(max_length=255, null=True, blank=True,)
+    instagram_url = models.CharField(max_length=255, null=True, blank=True,)
+    youtube_url = models.CharField(max_length=255, null=True, blank=True,)
+    
     def __str__(self):
-        return f"Add Story {self.post.title} by {self.user}"
+        return  (self.user)

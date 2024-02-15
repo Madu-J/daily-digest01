@@ -4,17 +4,9 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.views import generic, View
-from django.views.given import DetailView
 from django.http import HttpResponseRedirect
-from .models import Post, Comment, Story
-from .forms import CommentForm, StoryForm
-
-
-class UserProfileView(DetailView):
-
-    model = Profile
-    template_name = user_profile.html
-
+from .models import Post, Comment, Profile
+from .forms import CommentForm, ProfileForm
 
 
 class PostList(generic.ListView):
@@ -43,7 +35,6 @@ class PostDetail(View):
                 "commented": False,
                 "liked": liked,
                 "comment_form": CommentForm(),
-                "story_form": StoryForm()
             },
         )
     
@@ -57,7 +48,7 @@ class PostDetail(View):
             liked = True
 
         comment_form = CommentForm(data=request.POST)
-        story_form = StoryForm(data=request.POST)
+        Profile_form = ProfileForm(data=request.POST)
 
         if comment_form.is_valid():
             comment_form.instance.email = request.user.email
@@ -78,49 +69,8 @@ class PostDetail(View):
                 "commented": True,
                 "liked": liked,
                 "comment_form": CommentForm(),
-                "story_form": StoryForm()
             },
         )
-
-
-class AddStory(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
-    """This view is used to allow logged in users to create a story"""
-    form_class = StoryForm
-    template_name = 'add_story.html'
-    success_message = "%(calculated_field)s was created successfully"
-
-    def form_valid(self, form):
-        """
-        This method is called when valid form data has been posted.
-        The signed in user is set as the author of the story.
-        """
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-
-    def get_success_message(self, cleaned_data):
-        """
-        This function overrides the get_success_message() method to add
-        the story title into the success message.
-        source: https://docs.djangoproject.com/en/4.0/ref/contrib/messages/
-        """
-        return self.success_message % dict(
-            cleaned_data,
-            calculated_field=self.object.title,
-        )
-
-
-class Story(LoginRequiredMixin, generic.ListView):
-    """
-    This view is used to display a list of story created by the logged in
-    user.
-    """
-    model = Story
-    template_name = 'story.html'
-    paginate_by = 6
-
-    def get_queryset(self):
-        """Override get_queryset to filter by user"""
-        return Story.objects.filter(user=self.request.user)
 
 
 class UpdateComment(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, generic.UpdateView):
@@ -195,3 +145,13 @@ class PostLike(View):
             post.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
+class UserProfile(LoginRequiredMixin, generic.ListView):
+    """
+    This view is used to display a list of profile created by the logged in
+    user.
+    """
+    model = Post
+    template_name = 'profile.html'
+    paginate_by = 6

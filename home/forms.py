@@ -1,6 +1,7 @@
 from django import forms
 from django_summernote.widgets import SummernoteWidget
-from .models import Comment, Story
+from .models import Comment, Profile
+
 
 class CommentForm(forms.ModelForm):
     """ Create Comment form """
@@ -13,20 +14,23 @@ class CommentForm(forms.ModelForm):
         fields = ('name', 'body',)
 
 
-class StoryForm(forms.ModelForm):
-    """ Create Story form """
+class ProfileForm(forms.ModelForm):
+    """ Create Profile Form """
     def __init__(self, *args, **kwargs):
-        super(StoryForm, self).__init__(*args, **kwargs)
-        self.fields['body'].widget = forms.Textarea(attrs={'rows': 3})
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        self.fields['description'].widget = forms.Textarea(attrs={'rows': 3})
 
     class Meta:
         """
-        Get story model, choose fields to display
+        Get profile model, choose fields to display and add summernote widget
         """
-        model = Story
-        fields = ('user', 'post', 'body')
-    
-    widgets = {
+        model = Profile
+        fields = [
+            'user',
+            'bio',
+            ]
+        widgets = {
             'method': SummernoteWidget(),
             'ingredients': SummernoteWidget(),
         }
+      

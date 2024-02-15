@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment, Story
+from .models import Post, Comment, Profile
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -26,6 +26,6 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 
-@admin.register(Story)
-class StoryAdmin(admin.ModelAdmin):
-    list_display = ('body', 'post', 'user')
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'bio', 'add_profile')

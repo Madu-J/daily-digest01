@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.views import generic, View
 from django.http import HttpResponseRedirect
-from .models import Post, Comment, Profile
+from .models import Post, Comment, UserProfile
 from .forms import CommentForm, ProfileForm
 
 
@@ -48,7 +48,7 @@ class PostDetail(View):
             liked = True
 
         comment_form = CommentForm(data=request.POST)
-        Profile_form = ProfileForm(data=request.POST)
+        # Profile_form = ProfileForm(data=request.POST)
 
         if comment_form.is_valid():
             comment_form.instance.email = request.user.email
@@ -152,6 +152,28 @@ class UserProfile(LoginRequiredMixin, generic.ListView):
     This view is used to display a list of profile created by the logged in
     user.
     """
-    model = Post
+    model = UserProfile
     template_name = 'profile.html'
     paginate_by = 6
+
+
+class UpdateProfile(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, generic.UpdateView):
+    """
+    This view is used to allow logged in users to edit their own comments
+    """
+    model = UserProfile
+    template_name = 'update_profile.html'
+    success_message = "Profile edited successfully"
+
+    def test_func(self):
+        """
+        Prevent another user from editing user's profile
+        """
+        profile = self.get_object()
+        return comment.name == self.request.user.username
+
+    def get_success_url(self):
+        """ Return to post detail view when profile updated sucessfully"""
+        post = self.object.post
+
+        return reverse_lazy('post_detail', kwargs={'slug': post.slug})

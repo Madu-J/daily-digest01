@@ -9,7 +9,7 @@
                 <!-- Post title goes in these h1 tags -->
                 <h1 class="post-title">{{ post.title }}</h1>
                 <!-- Post author goes before the | the post's created date goes after -->
-                <a href="{% url 'user_profile' post.author.profile.id %}">Profile Page</a> |
+                <a href="{% url 'user_profile' post.author.pk %}">Profile Page</a> |
                 <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
@@ -64,24 +64,7 @@
             </div>
         </div>
     </div>
-    <!--<div class="row">
-        <div class="col">
-            <h3></h3>
-            <p>Posting as: {{ user.username }}</p>
-            <form method="post" class="">
-                <div class="modal-body">
-                    {{ profile_form | crispy }}
-                    {% csrf_token %}
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-dark btn-sm">
-                        <span><i class="submit"></i>Submit</span>
-                    </button>
-                </div>
-            </form>
-            <hr>
-        </div>
-    </div> -->
+    
     <div class="row">
         <div class="col-md-8 card mb-4  mt-3 ">
             <h3>Comments:</h3>
@@ -102,8 +85,9 @@
                                     class="fas fa-edit link-primary"></i></a>
                             <a href="{% url 'delete_comment' comment.id %}" aria-label="delete-comment"><i
                                     class="fas fa-times"></i></a>
+                            <a href="{% url 'user_profile' comment.author.pk %}" aria-label="user-profile"><i
                                     class="fas fa-times"></i></a>
-                            <a href="{% url 'user_profile' comment.id %}" aria-label="user-profile"><i
+                            <a href="{% url 'edit_profile' comment.user.pk %}" aria-label="edit-profile"><i
                                     class="fas fa-times"></i></a>
                         </span>
                             {% endif %}

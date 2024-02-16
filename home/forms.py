@@ -1,6 +1,6 @@
 from django import forms
 from django_summernote.widgets import SummernoteWidget
-from .models import Comment, Profile
+from .models import Comment, UserProfile
 
 
 class CommentForm(forms.ModelForm):
@@ -24,7 +24,7 @@ class ProfileForm(forms.ModelForm):
         """
         Get profile model, choose fields to display and add summernote widget
         """
-        model = Profile
+        model = UserProfile
         fields = [
             'user',
             'bio',

@@ -18,6 +18,7 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)
+    comments = models.ManyToManyField(User, related_name='post_comments', blank=True)
 
     class Meta:
         ordering = ['-created_on']
@@ -57,4 +58,4 @@ class UserProfile(models.Model):
     youtube_url = models.CharField(max_length=255, null=True, blank=True,)
     
     def __str__(self):
-        return  (self.user)
+        return  f"Profile {self.user} by {self.bio}"

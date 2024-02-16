@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="masthead">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-6 masthead-text">
+                <!-- Post title goes in these h1 tags -->
+                <h1 class="post-title">{{ post.title }}</h1>
+                <!-- Post author goes before the | the post's created date goes after -->
+                <a href="{% url 'user_profile' user.pk %}">Profile Page</a>
+            </div>
+            <div class="d-none d-md-block col-md-6 masthead-image">
+                <!-- The featured image URL goes in the src attribute -->
+                {% if "placeholder" in post.featured_image.url %}
+                <img src="https://keestalkstech.com/wp-content/uploads/2019/09/amazon-s3-logo.png">
+                {% else %}
+                <img src=" {{ post.featured_image.url }}" width="100%">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if is_paginated %}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+<div class="container">
+    <h1 class="page-title">Profile</h1>
+    <hr class="home-break">
+    <br>
+    <div class="row justify-content-center ">
+        {% if user.is_authenticated %}
+        {% load cloudinary %}
+        <div class="col-11 col-md-8 col-lg-6 mt-3 add-story-outer">
+            <!-- Form section -->
+            <form method="post" class="user_profile mb-5" enctype="multipart/form-data">
+                {{ form | crispy }}
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-dark">Submit</button>
+                <a class="btn btn btn-outline-dark m-2" href="{%  url 'user_profile' user.pk %}">Cancel</a>
+            </form>
+        </div>
+        {% endif %}
+</div>
+
+{% endblock content %}

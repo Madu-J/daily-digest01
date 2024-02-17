@@ -85,10 +85,6 @@
                                     class="fas fa-edit link-primary"></i></a>
                             <a href="{% url 'delete_comment' comment.id %}" aria-label="delete-comment"><i
                                     class="fas fa-times"></i></a>
-                            <a href="{% url 'user_profile' comment.author.pk %}" aria-label="user-profile"><i
-                                    class="fas fa-times"></i></a>
-                            <a href="{% url 'edit_profile' comment.user.pk %}" aria-label="edit-profile"><i
-                                    class="fas fa-times"></i></a>
                         </span>
                             {% endif %}
                     </p>

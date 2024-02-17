@@ -153,15 +153,15 @@ class UserProfile(LoginRequiredMixin, generic.ListView):
     user.
     """
     model = UserProfile
+    form_class = ProfileForm
     template_name = 'profile.html'
     paginate_by = 6
+    success_url = reverse_lazy('login')
 
 
 class UpdateProfile(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, generic.UpdateView):
-    """
-    This view is used to allow logged in users to edit their own comments
-    """
     model = UserProfile
+    form_class = ProfileForm
     template_name = 'update_profile.html'
     success_message = "Profile edited successfully"
 
@@ -176,4 +176,4 @@ class UpdateProfile(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin
         """ Return to post detail view when profile updated sucessfully"""
         post = self.object.post
 
-        return reverse_lazy('post_detail', kwargs={'slug': post.slug})
+        return reverse_lazy('profile.html', kwargs={'slug': post.slug})

@@ -155,39 +155,4 @@ class UserProfile(LoginRequiredMixin, generic.ListView):
     model = UserProfile
     form_class = ProfileForm
     template_name = 'profile.html'
-    paginate_by = 6
     success_url = reverse_lazy('login')
-
-
-class UpdateProfile(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, generic.UpdateView):
-    """
-    This view is used to allow logged in users to edit their profile
-    """
-    form_class = ProfileForm
-    template_name = 'update_recipe.html'
-    success_message = "%(calculated_field)s was edited successfully"
-
-    def form_valid(self, form):
-        """
-        This method is called when valid form data has been posted.
-        """
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    def test_func(self):
-        """
-        Prevent another user from updating other's profile
-        """
-        recipe = self.get_object()
-        return user_profile.author == self.request.user
-
-    def get_success_message(self, cleaned_data):
-        """
-        Override the get_success_message() method to add profile
-        into the success message.
-        source: https://docs.djangoproject.com/en/4.0/ref/contrib/messages/
-        """
-        return self.success_message % dict(
-            cleaned_data,
-            calculated_field=self.object.title,
-        )

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Daily Digest | Edit Comment{% endblock %}
 {% block content %}
+
 {% load crispy_forms_tags %}
 
 <div class="container">
@@ -15,10 +16,12 @@
                 {{ form | crispy }}
                 {% csrf_token %}
                 <div class="text-center">
+                    <label for="user_profile">Enter name:</label>
+                <input type="text" name="name_field" id="user_profile" value="Default name for user">
                     <button type="submit" class="btn btn-outline-dark">Profile</button>
                     <a class="btn btn-outline-dark m-2"
                         href="{% url 'user_profile' user.pk %}">Cancel</a>
-                </div>
+                    </div>
             </form>
         </div>
         {% endif %}

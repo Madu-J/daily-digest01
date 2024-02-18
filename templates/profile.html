@@ -1,30 +1,32 @@
 {% extends "base.html" %}
-{% block title %}Daily Digest | Edit Comment{% endblock %}
-{% block content %}
-
+{% block title %}Daily Digest | Profile Page {% endblock %}
 {% load crispy_forms_tags %}
 
-<div class="container">
-    <h1 class="page-title">Profile</h1>
-    <hr class="home-break">
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
+
+
+<div class="cardd container">
+    <div class="m-b-25"> <img class="rounded-circle account" id="profile-img" src="{{ user.profile.url }}" alt="">
+    <h1 class="page-title">Profile Page</h1>
     <br>
-    <div class="row justify-content-center">
-        {% if user.is_authenticated and comment.name == user.username  %}
-        <!-- Ensure the user is signed in, and the comment they're trying to access is owned by them -->
-        <div class="form-group">
-            <form method="POST">
-                {{ form | crispy }}
-                {% csrf_token %}
-                <div class="text-center">
-                    <label for="user_profile">Enter name:</label>
-                <input type="text" name="name_field" id="user_profile" value="Default name for user">
-                    <button type="submit" class="btn btn-outline-dark">Profile</button>
-                    <a class="btn btn-outline-dark m-2"
-                        href="{% url 'user_profile' user.pk %}">Cancel</a>
-                    </div>
-            </form>
+    <h2 id="profile-h1">{{user.username|title}}</h2>
+    <p class="title">{{user.email}}</p>
+    <!-- My Socials -->
+        <form action="" method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Join</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">Already have an account? <a href="{% url 'user_profile' user.pk %}">Login</a></small>
         </div>
-        {% endif %}
     </div>
 </div>
 

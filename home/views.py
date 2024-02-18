@@ -147,7 +147,7 @@ class PostLike(View):
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
-class UserProfile(LoginRequiredMixin, generic.ListView):
+class UserProfile(generic.ListView):
     """
     This view is used to display a list of profile created by the logged in
     user.

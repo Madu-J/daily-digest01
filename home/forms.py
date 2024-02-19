@@ -15,22 +15,16 @@ class CommentForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
-    """ Create Profile Form """
+
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
         self.fields['description'].widget = forms.Textarea(attrs={'rows': 3})
 
     class Meta:
-        """
-        Get profile model, choose fields to display and add summernote widget
-        """
         model = UserProfile
-        fields = [
-            'user',
-            'bio',
-            ]
-        widgets = {
+        fields = ()
+
+    widgets = {
             'method': SummernoteWidget(),
             'ingredients': SummernoteWidget(),
         }
-      

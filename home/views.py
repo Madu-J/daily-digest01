@@ -1,9 +1,9 @@
+from django.views import generic, View
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
-from django.views import generic, View
 from django.http import HttpResponseRedirect
 from .models import Post, Comment, UserProfile
 from .forms import CommentForm, ProfileForm
@@ -48,7 +48,6 @@ class PostDetail(View):
             liked = True
 
         comment_form = CommentForm(data=request.POST)
-        # Profile_form = ProfileForm(data=request.POST)
 
         if comment_form.is_valid():
             comment_form.instance.email = request.user.email

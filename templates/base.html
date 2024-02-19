@@ -74,22 +74,32 @@
         </div>
     </div>
 
-    <main class="flex-shrink-0 main-bg">
-        {% block content %}
-        <!-- Content Goes here -->
-        <div class="masthead">
-            <div class="container">
-                <div class="row g-0">
-                    <div class="col-md-6 masthead-title">
-                        <!-- Post title goes in these h1 tags -->
-                        <h1 class="post-title">{{ post.title }}</h1>
-                        <!-- Post author goes before the | the post's created date goes after -->
-                        <a href="{% url 'user_profile' user.pk %}">Profile Page</a>
-                    </div>
-                </div>
-            </div>
+    <main>
+    {% block content %}
+    <!-- Content Goes here -->
+    <div class="cardd container">
+        <h1 class="page-title">Profile Page</h1>
+        <br>
+        <div class="m-b-25"> <img class="rounded-circle account-img" id="profile-img" src="{% url 'user_profile' user.pk %}" class="img-radius" alt="https://keestalkstech.com/wp-content/uploads/2019/09/amazon-s3-logo.png">
+        <h2 id="profile-h1">{{user.username|title}}</h2>
+        <p class="title">{{user.email}}</p>
+        <!-- My Socials -->
+        <a href="" id="auth-links"><i class="fa fa-dribble"></i></a>
+        <a href="" id="auth-links"><i class="fa fa-twitter"></i></a>
+        <a href="" id="auth-links"><i class="fa fa-facebook"></i></a>
+        <a href="" id="auth-links"><i class="fa fa-youtube"></i></a>
+        <a href="" id="auth-links"><i class="fa fa-instagram"></i></a>
+        
+        <p><button id="btn-profile"><a href="#" id="auth-links">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Update Profile
+        </a></button></p>
         </div>
-        {% endblock content %}
+    </div>
+    {% endblock content %}
     </main>
 
     <!-- Footer -->

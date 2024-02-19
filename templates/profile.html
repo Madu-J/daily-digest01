@@ -11,15 +11,20 @@
     <br>
     <hr>
     <h1 class="page-title">Profile Page</h1>
-    <div class="m-b-25"> <img src="https://res.cloudinary.com/daily_digest01/image/upload/v1656016833/placeholder_image_rosie.jpg">
-    <img src=" {{ profile.image.url }}" alt="profile image" class="card-img-top">
+    <div class="m-b-25 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+        <img src="https://keestalkstech.com/wp-content/uploads/2019/09/amazon-s3-logo.png">
+    
     <h2 id="profile-h1">{{user.username|title}}</h2>
     <p class="title">{{user.email}}</p>
     <!-- My Socials -->
-    <a href="" id="auth-links"><i class="fa fa-twitter"></i></a>
-    <a href="" id="auth-links"><i class="fa fa-facebook"></i></a>
-    <a href="" id="auth-links"><i class="fa fa-youtube"></i></a>
-    <a href="" id="auth-links"><i class="fa fa-instagram"></i></a>
+    <div>
+        <h5>Sign up with your social account</h5>
+    <a href="" id="auth-links">Twitter</a>
+    <a href="" id="auth-links">Facebook</a>
+    <a href="" id="auth-links">LinkedIn</a>
+    <a href="" id="auth-links">Instagram</a>
+</div>
+<br>
     <p><button id="btn-profile"><a href="#" id="auth-links">
         <span></span>
         <span></span>

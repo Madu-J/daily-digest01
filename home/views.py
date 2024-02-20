@@ -155,3 +155,9 @@ class UserProfile(generic.ListView):
     form_class = ProfileForm
     template_name = 'profile.html'
     success_url = reverse_lazy('login')
+
+
+class AboutPage(generic.View):
+
+    def about(request):
+     return(request, 'about.html')

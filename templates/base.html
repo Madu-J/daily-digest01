@@ -38,7 +38,10 @@
             <div class="collapse navbar-collapse right" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Blog</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'about' %}">About</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
@@ -77,28 +80,7 @@
     <main>
     {% block content %}
     <!-- Content Goes here -->
-    <div class="cardd container">
-        <h1 class="page-title">Profile Page</h1>
-        <br>
-        <div class="m-b-25"> <img class="rounded-circle account-img" id="profile-img" src="{% url 'user_profile' user.pk %}" class="img-radius" alt="https://keestalkstech.com/wp-content/uploads/2019/09/amazon-s3-logo.png">
-        <h2 id="profile-h1">{{user.username|title}}</h2>
-        <p class="title">{{user.email}}</p>
-        <!-- My Socials -->
-        <a href="" id="auth-links"><i class="fa fa-dribble"></i></a>
-        <a href="" id="auth-links"><i class="fa fa-twitter"></i></a>
-        <a href="" id="auth-links"><i class="fa fa-facebook"></i></a>
-        <a href="" id="auth-links"><i class="fa fa-youtube"></i></a>
-        <a href="" id="auth-links"><i class="fa fa-instagram"></i></a>
-        
-        <p><button id="btn-profile"><a href="#" id="auth-links">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Update Profile
-        </a></button></p>
-        </div>
-    </div>
+    
     {% endblock content %}
     </main>
 

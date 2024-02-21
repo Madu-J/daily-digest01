@@ -1,7 +1,7 @@
 # Daily Digest Website (Milestone Project 4)
 ![mockup]()
 
-[Daily Digest]() is an online news and personl publisher dedicated to bringing you news and happening around the globe.
+[Daily Digest]() is an online news and personal publisher dedicated to bringing you news and happening around the globe.
 
 ## Table of contents
 
@@ -14,7 +14,8 @@
     - [As a **returning user**](#as-a-returning-user)
   - [UAC](#uac)
     - [Home Page](#home-page)
-     - [Add story](#add-story-page)
+     - [About Page](#about-page)
+     - [Profile Profile](#profile-page)
     - [Sign Up Page](#sign-up-page)
     - [Sign In Page](#sign-in-page)
       - [User Goal](#user-goal)
@@ -129,13 +130,13 @@ User Acceptance Criteria based on the user stories:
 
 <span id="uac13">10.</span> Each post should display date and time of publication to allow users know most current news.
 
-<span id="uac14">11.</span> The website should have a user profile page that displays information about other users to allow other users know who wrote a particular story/comment.
+<span id="uac14">11.</span> The website should have a user profile page that displays information about other users to allow other users know who wrote a particular comment.
 
 <span id="uac16">12.</span> The website should have links to its social media pages, such as Facebook, Twitter, Instagram, etc.
 
 <span id="uac21">13.</span> The website should have security measures in place to protect user data, such as encryption and secure servers.
 
-<span id="uac23">14.</span> The website should divide the posts into pages so that users can easily navigate through them.
+<span id="uac23">14.</span> The website should divide post into pages so that users can easily navigate through them.
 
 <span id="uac25">15.</span> The website should have a moderation system that reviews and approves or removes content that does not meet the standards of the website.
 
@@ -173,16 +174,23 @@ User Acceptance Criteria based on the user stories:
     > - Initiate future engagement, such as following on social media.
     > - Provide aesthetically pleasing user experience.
 
-### Add story Page
+### About Page
 
-![Add-story](media/Screenshot 2024-02-14 002746.png)
+![About-Page](media/Screenshot )
 
-- Allows user to to share their stories.
-
+- Allows User to get to know what the website is all about.
 
 #### User Goal
 
-   > - Allow usser to share their story with others
+   > - To allow User have some knowledge about the website.
+
+### Profile Page
+
+-Allows User Upload their profile pictures.
+
+####
+
+- A logged in User can see his/her username and profile picture.
 
     #### Website Goal
 
@@ -208,7 +216,7 @@ User Acceptance Criteria based on the user stories:
 
 ![](media/signin.png)
 
-- Allows to sign in
+- Allows user to sign in
 
 #### User Goal
 

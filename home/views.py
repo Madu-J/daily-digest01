@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from .models import Post, Comment, UserProfile
 from .forms import CommentForm, ProfileForm
+from django.views.generic import TemplateView
 
 
 class PostList(generic.ListView):
@@ -156,8 +157,6 @@ class UserProfile(generic.ListView):
     template_name = 'profile.html'
     success_url = reverse_lazy('login')
 
-
-class AboutPage(generic.View):
-
-    def about(request):
-     return(request, 'about.html')
+    
+class AboutPage(TemplateView):
+    template_name = "about.html"

@@ -152,7 +152,7 @@ User Acceptance Criteria based on the user stories:
 
 ### Home Page
 
-![Home-Page](media/Screenshot 2024-02-14 002311.png)
+![Home-Page](media/home.png)
 
 - Displays the main purpose and topic of the site.
 - Addresses questions and doubts the first-time users might have and provides a registration form.
@@ -176,7 +176,7 @@ User Acceptance Criteria based on the user stories:
 
 ### About Page
 
-![About-Page](media/Screenshot )
+![About-Page](media/about-us.png)
 
 - Allows User to get to know what the website is all about.
 
@@ -186,7 +186,9 @@ User Acceptance Criteria based on the user stories:
 
 ### Profile Page
 
--Allows User Upload their profile pictures.
+-Allows User Createprofile page
+![](media/profile-page.png).
+
 
 ####
 
@@ -250,7 +252,7 @@ User Acceptance Criteria based on the user stories:
 
 ### Post Detail Page
 
-![](postdetails.png)
+![](media/post-detail.png)
 
 - Shows a post in detail including an image.
 - Allows user to see and write comments about the post.
@@ -293,7 +295,7 @@ User Acceptance Criteria based on the user stories:
 
 ### Delete Post Page
 
-![](delete-post.png)
+![](media/delete-comment.png)
 
 - Confirms if the user wants to delete their post.
 - Available only for authenticated users.
@@ -309,7 +311,7 @@ User Acceptance Criteria based on the user stories:
 
 ### Footer ([uac 11](#uac11), [uac 12](#uac12), [uac 20](#uac20))
 
-![](footer)
+![](media/footer.png)
 
 The website's footer is designed to provide users with useful links such as social media link for users to follow 
 
@@ -324,7 +326,7 @@ The development of the daily digest website has followed an Agile methodology, u
 - would have
 - could have
 
-![](user-story)
+![](media/user-story.png)
 
 # Design
 
@@ -334,7 +336,7 @@ The website is meant to have a simple layout and a clean design. The home page i
 
 ### Colour Scheme
 
-![Palette](readme/color.jpg)
+![Palette]()
 
 The colour scheme is dark-gray and white to create a visually appealing and cohesive design that is easily recognizable as being associated to blog website.
 
@@ -371,13 +373,13 @@ The website is designed and developed with accessibility in mind: it provides al
 
 ### Navbar ([uac 3](#uac3), [uac 4](#uac4))
 
-![](navbar)
+![](media/navbar.png)
 
 The navbar is a key feature of the website, located at the top of the page. It also include links that aid navigation on the website. The "Registration" link provides form for new users to register and the login allows already registered users to login. The "Login" and "Register" links are used for user authentication and are only visible to unauthenticated users. Once the user logs in, they will not see these links anymore and "Log out" will be displayed instead.
 
 ### Comment field ([uac 16](#uac16))
 
-![](commen)
+![](media/omment1.png)
 
 The form to leave a comment appears when the user opens post to read news details. It is handled by JavaScript without refreshing the page. This allows for a seamless and smooth user experience, as users can leave comments without disrupting their current browsing session.
 
@@ -385,7 +387,7 @@ It is important to note that all comments are moderated to ensure that the conte
 
 ## Admin ([uac 5](#uac5))
 
-![](admin)
+![](media/admin.png)
 
 The website includes a fully customised Admin panel. The admin panel allows for the management and editing of the application's data through a web interface. This interface is only accessible to users with administrator or superuser privileges. The admin panel provides CRUD functionalities. It allows for the management of the content, users, groups, and permissions.
 

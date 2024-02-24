@@ -326,7 +326,7 @@ The development of the daily digest website has followed an Agile methodology, u
 - would have
 - could have
 
-![](media/user-story.png)
+![User Story](media/user-story.png)
 
 # Design
 

@@ -1,7 +1,7 @@
 # Daily Digest Website (Milestone Project 4)
 ![mockup]()
 
-[Daily Digest]() is an online news and personal publisher dedicated to bringing you news and happening around the globe.
+[Daily Digest](https://daily-digest01-135da823c1d2.herokuapp.com/) is an online news and personal publisher dedicated to bringing you news and happening around the globe.
 
 ## Table of contents
 
@@ -67,7 +67,7 @@ The website provides all the essential features, such as creating a personal acc
 
 The website was developed as a Milestone Project#4 for the Code Institute's Full Stack Developer course.
 
-The live link to Daily Digest webpage can be found here - <https://.herokuapp.com/>
+The live link to Daily Digest webpage can be found here - <https://daily-digest01-135da823c1d2.herokuapp.com/>
 
 # UX Design
 
@@ -504,3 +504,7 @@ This project was deployed using Code Institute's mock terminal for Heroku and th
 - Click on deploy at the top left side and select github to connect to github. Confirm your connection to github and search for the github repository name, click connect to link up the Heroku app creacted ealier with the repository.
 - Choose either automatic deploy or manual. I used manual which is deploy branch.
 - Allow the app to build until it shows successful then click view and it takes you to the deployed link.
+
+### Credit
+
+- AliOKeeffe <https://github.com/AliOKeeffe>

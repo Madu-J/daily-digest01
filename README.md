@@ -1,5 +1,5 @@
 # Daily Digest Website (Milestone Project 4)
-![mockup]()
+![mockup](media/mockup.png)
 
 [Daily Digest](https://daily-digest01-135da823c1d2.herokuapp.com/) is an online news and personal publisher dedicated to bringing you news and happening around the globe.
 

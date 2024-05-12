@@ -2,29 +2,36 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from cloudinary.models import CloudinaryField
+from django_extensions.db.fields import AutoSlugField
+from .validators import textfield_not_empty
 
-STATUS = ((0, "Draft"), (1, "Published"))
+
+STATUS = ((0, "Pending"), (1, "Published"))
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True)
+    title = models.CharField(max_length=200)
+    slug = AutoSlugField(populate_from='title', unique=True)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="blog_posts")
-    updated_on = models.DateTimeField(auto_now=True)
-    content = models.TextField()
+        User, on_delete=models.CASCADE, related_name="digest_posts")
+    body = models.TextField(blank=True, null=True)
+    post_date = models.DateTimeField(auto_now_add = True)
     featured_image = CloudinaryField('image', default='placeholder')
-    excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
-    likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)
-    
+    likes = models.ManyToManyField(
+        User, related_name='blog_likes', blank=True)
+    snippet = models.CharField(max_length=55)
+    category = models.CharField(max_length=200)
 
     class Meta:
         ordering = ['-created_on']
 
+    def get_absolute_url(self):
+        return reverse('post_detail', kwargs={'slug': self.slug})
+
     def __str__(self):
-        return self.title
+        return f"{self.title}"
 
     def number_of_likes(self):
         return self.likes.count()
@@ -48,16 +55,17 @@ class Comment(models.Model):
 
         
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE) 
+    user = models.OneToOneField(
+        User, null=True, on_delete=models.CASCADE, related_name='user_profile') 
     bio = models.TextField(max_length=200)
-    user_posts = Post.objects.filter(author=page_user)
-    page_user = get_object_or_404(UserProfile, id=self.kwargs['pk'])
+
     website_url = models.CharField(max_length=255, null=True, blank=True,)
     facebook_url = models.CharField(max_length=255, null=True, blank=True,)
     twitter_url = models.CharField(max_length=255, null=True, blank=True,)
     instagram_url = models.CharField(max_length=255, null=True, blank=True,)
     youtube_url = models.CharField(max_length=255, null=True, blank=True,)
-    profile_pic = models.ImageField(null=True, blank=True, upload_to ="images/profile/")
+    profile_pic = models.ImageField(
+        null=True, blank=True, upload_to ="images/profile/")
 
     
     def __str__(self):

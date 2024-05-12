@@ -6,8 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from .models import Post, Comment, UserProfile
-from .forms import CommentForm, ProfileForm
-from django.views.generic import TemplateView
+from .forms import CommentForm
 
 
 class PostList(generic.ListView):
@@ -73,7 +72,7 @@ class PostDetail(View):
         )
 
 
-class UpdateComment(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, generic.UpdateView):
+class UpdateComment(LoginRequiredMixin, generic.UpdateView):
     """
     This view is used to allow logged in users to edit their own comments
     """
@@ -148,14 +147,18 @@ class PostLike(View):
 
 
 class UserProfile(generic.ListView):
-    """
-    This view is used to display a list of profile created by the logged in
-    user.
-    """
-    model = UserProfile
-    form_class = ProfileForm
-    template_name = 'profile.html'
-    success_url = reverse_lazy('login')
+     model = UserProfile
+     template_name = 'profile.html'
+
+    def get_context_data(self, *args, **kwargs):
+        user = self.request.user
+        user_posts = Post.objects.filter(
+        author=page_user.user).order_by('-post_date')
+        page_user = get_object_or_404(UserProfile, id=self.kwargs['pk'])
+        context = super(UserProfile, self).get_context_data(*args, **kwargs)
+        context['page_user'] = page_user
+        context['user_posts'] = user_posts
+        return context
 
     
 class AboutPage(TemplateView):

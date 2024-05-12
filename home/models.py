@@ -49,13 +49,16 @@ class Comment(models.Model):
         
 class UserProfile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE) 
-    bio = models.TextField()
-    profile_pic = models.ImageField(null=True, blank=True, upload_to ="images/profile/")
+    bio = models.TextField(max_length=200)
+    user_posts = Post.objects.filter(author=page_user)
+    page_user = get_object_or_404(UserProfile, id=self.kwargs['pk'])
     website_url = models.CharField(max_length=255, null=True, blank=True,)
     facebook_url = models.CharField(max_length=255, null=True, blank=True,)
     twitter_url = models.CharField(max_length=255, null=True, blank=True,)
     instagram_url = models.CharField(max_length=255, null=True, blank=True,)
     youtube_url = models.CharField(max_length=255, null=True, blank=True,)
+    profile_pic = models.ImageField(null=True, blank=True, upload_to ="images/profile/")
+
     
     def __str__(self):
         return  f"Profile {self.user} by {self.bio}"

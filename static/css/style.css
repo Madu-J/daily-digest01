@@ -149,8 +149,25 @@ body {
     border: none;
 }
 
+.about-header {
+    margin-left: 125px;
+}
+
+.about-page {
+    margin: 10px;
+    text-align: left;
+}
+
 @media screen and (min-width: 1200px) {
     .navbar-nav {
         margin-left: 650px;
+    }
+
+    .about-page {
+        margin: 50px;
+    }
+
+    .about-header {
+        margin-left: 716px;
     }
 }

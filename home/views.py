@@ -9,10 +9,15 @@ from .models import Post, Comment, UserProfile
 from .forms import CommentForm, ProfileForm
 
 
+class Home(generic.TemplateView):
+    """This view is used to display the home page"""
+    template_name = "index.html"
+
+
 class PostList(generic.ListView):
     model = Post
     queryset = Post.objects.filter(status=1).order_by("-created_on")
-    template_name = "index.html"
+    template_name = "browse_posts.html"
     paginate_by = 6
 
 

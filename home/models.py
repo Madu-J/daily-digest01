@@ -3,17 +3,17 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from cloudinary.models import CloudinaryField
 from django_extensions.db.fields import AutoSlugField
-
+from .validators import textfield_not_empty
 
 
 STATUS = ((0, "Pending"), (1, "Published"))
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=60, unique=True)
+    title = models.CharField(max_length=100, unique=True)
     slug = AutoSlugField(populate_from='title', unique=True)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="home_posts")
+        User, on_delete=models.CASCADE, related_name="blog_posts")
     description = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)

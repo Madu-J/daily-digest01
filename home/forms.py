@@ -26,5 +26,5 @@ class ProfileForm(forms.ModelForm):
 
     widgets = {
             'method': SummernoteWidget(),
-            'ingredients': SummernoteWidget(),
+            'descriptons': SummernoteWidget(),
         }

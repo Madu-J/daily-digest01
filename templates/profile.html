@@ -2,18 +2,34 @@
 {% block title %}Daily Digest | Profile Page {% endblock %}
 {% load crispy_forms_tags %}
 
-{% for post in user_posts %}
-<div class="col-md-6">
-    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-success"><a href="{% url 'category' post.category %}">{{ post.category}}</a></strong>
-            <h3 class="mb-0"><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h3>
-            <div class="mb-1 text-muted">{{ post.post_date}}</div>
-            <p style="margin-top: 12px;" class="mb-auto">{{post.snippet}}</p>  
-        </div>
-        {% if post.header_image %}
-        <img class="rounded float-right" style="width: 200px;" src="{{ post.header_image.url }}" alt="blog-header-image">                       
-        {% endif %} 
-    </div>
+{% block content %}
+
+
+    <br>
+    <hr>
+    <h4 class="page-title">Profile Page</h4>
+    <div class="m-b-25 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+        <img src="https://keestalkstech.com/wp-content/uploads/2019/09/amazon-s3-logo.png">
+    
+    <h2 id="profile-h1">{{user.username|title}}</h2>
+    <p class="title">{{user.email}}</p>
+    <!-- My Socials -->
+    <div>
+        <h5>Sign up with your social account</h5>
+    <a href="" id="auth-links">Twitter</a>
+    <a href="" id="auth-links">Facebook</a>
+    <a href="" id="auth-links">LinkedIn</a>
+    <a href="" id="auth-links">Instagram</a>
 </div>
-{% endfor %}
+<br>
+    <p><button id="btn-profile"><a href="#" id="auth-links">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Update Profile
+    </a></button></p>
+    </div>
+
+{% endblock content %}
+

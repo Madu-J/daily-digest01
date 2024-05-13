@@ -3,33 +3,33 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from cloudinary.models import CloudinaryField
 from django_extensions.db.fields import AutoSlugField
-from .validators import textfield_not_empty
+
 
 
 STATUS = ((0, "Pending"), (1, "Published"))
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=60, unique=True)
     slug = AutoSlugField(populate_from='title', unique=True)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="digest_posts")
-    body = models.TextField(blank=True, null=True)
-    post_date = models.DateTimeField(auto_now_add = True)
-    featured_image = CloudinaryField('image', default='placeholder')
+        User, on_delete=models.CASCADE, related_name="home_posts")
+    description = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
+    excerpt = models.TextField(blank=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    featured_image = CloudinaryField('image', default='placeholder')
     likes = models.ManyToManyField(
         User, related_name='blog_likes', blank=True)
-    snippet = models.CharField(max_length=55)
-    category = models.CharField(max_length=200)
-
+    
     class Meta:
         ordering = ['-created_on']
-
+    
     def get_absolute_url(self):
+        """Get url after user adds/edits post"""
         return reverse('post_detail', kwargs={'slug': self.slug})
-
+        
     def __str__(self):
         return f"{self.title}"
 
@@ -58,7 +58,6 @@ class UserProfile(models.Model):
     user = models.OneToOneField(
         User, null=True, on_delete=models.CASCADE, related_name='user_profile') 
     bio = models.TextField(max_length=200)
-
     website_url = models.CharField(max_length=255, null=True, blank=True,)
     facebook_url = models.CharField(max_length=255, null=True, blank=True,)
     twitter_url = models.CharField(max_length=255, null=True, blank=True,)

@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from .models import Post, Comment, UserProfile
-from .forms import CommentForm
+from .forms import CommentForm, ProfileForm
 
 
 class PostList(generic.ListView):
@@ -148,18 +148,10 @@ class PostLike(View):
 
 class UserProfile(generic.ListView):
      model = UserProfile
+     form_class = ProfileForm
      template_name = 'profile.html'
-
-    def get_context_data(self, *args, **kwargs):
-        user = self.request.user
-        user_posts = Post.objects.filter(
-        author=page_user.user).order_by('-post_date')
-        page_user = get_object_or_404(UserProfile, id=self.kwargs['pk'])
-        context = super(UserProfile, self).get_context_data(*args, **kwargs)
-        context['page_user'] = page_user
-        context['user_posts'] = user_posts
-        return context
+     success_url = reverse_lazy('login')
 
     
-class AboutPage(TemplateView):
+class AboutPage(generic.TemplateView):
     template_name = "about.html"

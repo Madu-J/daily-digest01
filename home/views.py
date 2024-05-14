@@ -40,6 +40,7 @@ class PostDetail(View):
                 "commented": False,
                 "liked": liked,
                 "comment_form": CommentForm(),
+                "profile_form": ProfileForm(),
             },
         )
     
@@ -95,9 +96,8 @@ class AddPost(
 
     def get_success_message(self, cleaned_data):
         """
-        This function overrides the get_success_message() method to add
+        This function overrides the get_success_message method to add
         the post title into the success message.
-        source: https://docs.djangoproject.com/en/4.0/ref/contrib/messages/
         """
         return self.success_message % dict(
             cleaned_data,
@@ -105,9 +105,90 @@ class AddPost(
         )
 
 
+class UserPost(LoginRequiredMixin, generic.ListView):
+    """
+    Displays list of posts created by a logged in
+    user.
+    """
+    model = Post
+    template_name = 'user_post.html'
+    paginate_by = 6
+
+    def get_queryset(self):
+        """Override get_queryset to filter by user"""
+        return Post.objects.filter(author=self.request.user)
+
+
+class UpdatePost(
+        LoginRequiredMixin, UserPassesTestMixin,
+        SuccessMessageMixin, generic.UpdateView
+        ):
+
+    """
+    This view enables logged in users to edit their own posts
+    """
+    model = Post
+    form_class = ProfileForm
+    template_name = 'update_post.html'
+    success_message = "%(calculated_field)s was edited successfully"
+
+    def form_valid(self, form):
+        """
+        This method is called when valid form data has been posted.
+        A signed in user is set as the author of the post.
+        """
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        """
+        Block user from updating other's posts
+        """
+        post = self.get_object()
+        return post.author == self.request.user
+
+    def get_success_message(self, cleaned_data):
+        """
+        Override the get_success_message() method to add the post title
+        into the success message.
+        """
+        return self.success_message % dict(
+            cleaned_data,
+            calculated_field=self.object.title,
+        )
+
+
+class DeletePost(
+        LoginRequiredMixin, 
+        UserPassesTestMixin, generic.DeleteView):
+    """
+    This view enables logged in users to delete their own posts.
+    """
+    model = Post
+    template_name = 'delete_post.html'
+    success_message = "Post deleted successfully"
+    success_url = reverse_lazy('user_post')
+
+    def test_func(self):
+        """
+        Prevent another user from deleting other's post
+        """
+        post = self.get_object()
+        return post.author == self.request.user
+
+    def delete(self, request, *args, **kwargs):
+        """
+        Displays sucess message and cannot be used in generic.DeleteView.
+     
+   
+        """
+        messages.success(self.request, self.success_message)
+        return super(DeletePost, self).delete(request, *args, **kwargs)
+
+
 class UpdateComment(LoginRequiredMixin, generic.UpdateView):
     """
-    This view is used to allow logged in users to edit their own comments
+    Enables logged in users to edit their own comments
     """
     model = Comment
     form_class = CommentForm
@@ -187,6 +268,29 @@ class UserProfile(generic.ListView):
      form_class = ProfileForm
      template_name = 'profile.html'
      success_url = reverse_lazy('login')
+
+
+class UpdateProfile(
+    LoginRequiredMixin, UserPassesTestMixin, 
+    SuccessMessageMixin, generic.UpdateView):
+    form_class = ProfileForm
+    model = UserProfile
+    template_name = 'update_profile.html'
+    success_message = "Profile edited successfully"
+
+    def test_func(self):
+        """
+        Prevent another user from editing user's profile
+        """
+        profile = self.get_object()
+        return comment.name == self.request.user.username
+
+    def get_success_url(self):
+        """ Return to post detail view when profile updated sucessfully"""
+        post = self.object.post
+
+        return reverse_lazy('post_detail', kwargs={'slug': post.slug})
+
 
     
 class AboutPage(generic.TemplateView):

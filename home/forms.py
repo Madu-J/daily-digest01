@@ -32,7 +32,11 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('title', 'description')
+        fields = [
+            'title', 'description',
+            'publish_time', 'method',
+            'image', 'status',
+            ]
 
     widgets = {
             'method': SummernoteWidget(),

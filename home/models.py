@@ -55,16 +55,20 @@ class Comment(models.Model):
 
         
 class UserProfile(models.Model):
+    title = models.CharField(max_length=60, unique=True)
+    email = models.EmailField()
     user = models.OneToOneField(
-        User, null=True, on_delete=models.CASCADE, related_name='user_profile') 
-    bio = models.TextField(max_length=200)
-    website_url = models.CharField(max_length=255, null=True, blank=True,)
-    facebook_url = models.CharField(max_length=255, null=True, blank=True,)
-    twitter_url = models.CharField(max_length=255, null=True, blank=True,)
-    instagram_url = models.CharField(max_length=255, null=True, blank=True,)
-    youtube_url = models.CharField(max_length=255, null=True, blank=True,)
-    profile_pic = models.ImageField(
-        null=True, blank=True, upload_to ="images/profile/")
+        User, null=True, on_delete=models.CASCADE, 
+        related_name='user_profile')
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, 
+        related_name='user_profile')
+    description = models.TextField()
+    publish_time = models.CharField(max_length=8, default=0)
+    method = models.TextField(validators=[textfield_not_empty])
+    status = models.IntegerField(choices=STATUS, default=1)
+   
+    image = CloudinaryField('image', default='placeholder')
 
     
     def __str__(self):

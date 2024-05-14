@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Daily Digest | Your daily news !">
-    <meta name="keywords" content="news, tech, sports">
+    <meta name="keywords" content="news, tech, sports, hospitalities and entertainments">
     <meta name="author" content=" Admin ">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
@@ -24,84 +24,128 @@
 
 </head>
 
-<body class="d-flex flex-column h-100 main-bg">
-
-    <!-- Navigation -->
-    <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <div class="container-fluid">
-            <a id="heading" class="navbar-brand" href="{% url 'home' %}"><span class="brand">Daily </span>
-                <span class="red-o">Digest</span></span></span></a>
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+<body>
+    <div class="content">
+<!-- Navigation -->
+<header>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img class="logo-image"
+                    src="https://res.cloudinary.com/dwzcuabfl/image/upload/v1708771458/static/summernote/summernote.5a782fa52e35.png"
+                    alt="headerlogo">
+            </a>
+            <button class="navbar-light navbar-toggler ml-auto" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item ">
+                        <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'browse_posts' %}">Browse Posts</a>
+                    </li>
+                        {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">News</a>
+                    </li>
 
-            <div class="collapse navbar-collapse right" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">News</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'about' %}">About</a>
-                </li>
-
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{% url 'user_profile' user.pk %}">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                </li>
-                {% endif %}
-            </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item d-block d-lg-none">
+                        <a class="nav-link" href="{% url 'user_post' %}">User Post</a>
+                    </li>
+                    <li class="nav-item d-block d-lg-none">
+                            <a class="nav-link" href="{% url 'user_profile'%}">Profile</a>
+                    </li>
+                    <li class="nav-item d-block d-lg-none">
+                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item d-block d-lg-none">
+                        <a class="nav-link" href="{% url 'account_signup' %}">Sign up</a>
+                    </li>
+                    <li class="nav-item d-block d-lg-none">
+                        <a class="nav-link" href="{% url 'account_login' %}">Log in</a>
+                    </li>
+                    {% endif %}
+                    </ul>
+                </div>
+                <div class="d-none d-lg-block">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-expanded="false">
+                                <span><i class="fas fa-user profile-icon"></i>{{ user.username }}</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'user_post' %}">User Post</a>
+                                <a class="dropdown-item"  href="{% url 'user_profile'%}">Profile</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+                            </div>
+                        </li>
+                        {% else %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-expanded="false">
+                                <span>My Account</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'account_signup' %}">Sign up</a>
+                                <a class="dropdown-item" href="{% url 'account_login' %}">Log in</a>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 </header>
     
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                {% for message in messages %}
-                <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
-                    {{ message | safe }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                {% endfor %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+                {{ message | safe }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+            {% endfor %}
         </div>
     </div>
+</div>
 
-    <main>
-    {% block content %}
-    <!-- Content Goes here -->
+<main>
+{% block content %}
+<!-- Content Goes here -->
     
-    {% endblock content %}
-    </main>
+{% endblock content %}
+</main>
+</div>
 
-    <!-- Footer -->
-    <footer class="footer mt-auto py-3 dark-bg">
-        <p class="m-0 text-center text-white">Follow us: <i class="fab fa-facebook-square ms-3"></i>
-            <i class="fab fa-twitter-square ms-3"></i>
-            <i class="fab fa-instagram-square ms-3"></i>
-            <i class="fab fa-youtube-square ms-3"></i></p>
-    </footer>
-    <script>
-        setTimeout(function () {
-            let messages = document.getElementById('msg');
-            let alert = new bootstrap.Alert(messages);
-            alert.close();
-        }, 4000);
-    </script>
+<!-- Footer -->
+<footer class="footer mt-auto py-3 dark-bg">
+    <p class="m-0 text-center text-white">Follow us: <i class="fab fa-facebook-square ms-3"></i>
+        <i class="fab fa-twitter-square ms-3"></i>
+        <i class="fab fa-instagram-square ms-3"></i>
+        <i class="fab fa-youtube-square ms-3"></i></p>
+</footer>
+<script>
+    setTimeout(function () {
+        let messages = document.getElementById('msg');
+        let alert = new bootstrap.Alert(messages);
+        alert.close();
+    }, 4000);
+</script>
 </body>
 
 </html>

@@ -14,6 +14,8 @@ class Post(models.Model):
     slug = AutoSlugField(populate_from='title', unique=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="blog_posts")
+    publish_time = models.CharField(max_length=8, default=0)
+    method = models.TextField(validators=[textfield_not_empty])
     description = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
@@ -64,10 +66,7 @@ class UserProfile(models.Model):
         Post, on_delete=models.CASCADE, 
         related_name='user_profile')
     description = models.TextField()
-    publish_time = models.CharField(max_length=8, default=0)
-    method = models.TextField(validators=[textfield_not_empty])
     status = models.IntegerField(choices=STATUS, default=1)
-   
     image = CloudinaryField('image', default='placeholder')
 
     

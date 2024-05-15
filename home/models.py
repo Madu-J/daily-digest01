@@ -23,7 +23,7 @@ class Post(models.Model):
     snippet = models.CharField(max_length=80)
     image = CloudinaryField('image', default='placeholder')
     likes = models.ManyToManyField(
-        User, related_name='blog_likes', blank=True)
+        User, related_name='home_likes', blank=True)
     
     class Meta:
         ordering = ['-created_on']

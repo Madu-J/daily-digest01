@@ -1,122 +1,177 @@
 {% extends 'base.html' %}
+{% block title %} Daily Digest | {{ post.title }}{% endblock %}
 {% block content %}
 {% load crispy_forms_tags %}
 
-<div class="masthead">
-    <div class="container">
-        <div class="row g-0">
-            <div class="col-md-6 masthead-text">
-                <!-- Post title goes in these h1 tags -->
-                <h1 class="post-title">{{ post.title }}</h1>
-                <!-- Post author goes before the | the post's created date goes after -->
-                <a href="{% url 'user_profile' post.author.pk %}">Profile Page</a> |
-                <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
-            </div>
-            <div class="d-none d-md-block col-md-6 masthead-image">
-                <!-- The featured image URL goes in the src attribute -->
-                {% if "placeholder" in post.featured_image.url %}
-                <img src="https://keestalkstech.com/wp-content/uploads/2019/09/amazon-s3-logo.png">
-                {% else %}
-                <img src=" {{ post.featured_image.url }}" width="100%">
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
-            <div class="card-body">
-                <!-- The post content goes inside the card-text. -->
-                <!-- Use the | safe filter inside the template tags -->
-                <p class="card-text ">
-                    {{ post.content | safe }}
-                </p>
-                <div class="row">
-
-                    <div class="col-1">
-                        <strong>
+<div class="container p-0">
+    <div class="container pt-3">
+        <div class="card mb-3 post-detail-card">
+            <div class="row no-gutters">
+                <div class="col-12 col-md-4">
+                    {% if "placeholder" in post.image.url %}
+                    <img src="https://res.cloudinary.com/dwzcuabfl/image/upload/v1708771458/static/summernote/summernote.5a782fa52e35.png"
+                        class="post-detail-img" alt="placeholder image">
+                    {% else %}
+                    <img src=" {{ post.image.url }}" alt="post image" class="post-detail-img">
+                    {% endif %}
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="card-body post-detail-outer py-2">
+                        <div>
+                            <h1 class="card-title page-title post-title text-left">{{ post.title }}</h1>
+                        </div>
+                        <p class="card-text">Author: {{ post.author }}</p>
+                        <div class="mb-5">
+                            <p>
+                                <span><i class="far fa-clock pr-2"> </i></span>
+                                <span>Pub Time: {{ post.publish_time }}</span>
+                            </p>
+  
+                        </div>
+                        <!-- post action buttons -->
+                        <div class="action-buttons-outer d-block">
+                            {% if user.is_authenticated %}
+                            <button type="button" class="btn btn btn-outline-dark mp-button rounded-pill mr-2"
+                                data-toggle="modal">
+                                <span><i class="fas fa-heart pr-1"></i></span>
+                               
+                            </button>
+                            <!--Userprofile -->
+                            <div>
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form method="post" class="add-post">
+                                            <div class="modal-body">
+                                                {{ profile_form | crispy }}
+                                                {% csrf_token %}
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-outline-dark btn-sm">
+                                                    <span><i class="fas fa-heart pr-1"></i></span>
+                                                    Userprofile
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <!-- -->
                             {% if user.is_authenticated %}
                             <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
                                 {% csrf_token %}
-                                {% if liked %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="fas fa-heart"></i></button>
+                                {% if liked  %}
+                                <button class="action-btn btn btn-info" type="submit" name="homepost_id"
+                                    value="{{post.slug}}" aria-label="like-outline">
+                                    <i class="fas fa-heart"></i></button>
                                 {% else %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="far fa-heart"></i></button>
+                                <button class="action-btn btn btn-info" type="submit" name="homepost_id"
+                                    value="{{post.slug}}" aria-label="like-solid"><i
+                                        class="far fa-heart"></i></button>
                                 {% endif %}
                             </form>
-                            {% else %}
-                            <span class="text-secondary"><i class="far fa-heart"></i></span>
                             {% endif %}
-                        <!-- The number of likes goes before the closing strong tag -->
-                        <span class="text-secondary">{{ post.number_of_likes }} </span>
-                        </strong>
-                    </div>
-                    <div class="col-1">
-                        {% with comments.count as total_comments %}
-                        <strong class="text-secondary"><i class="far fa-comments"></i>
-                            <!-- Our total_comments variable goes before the closing strong tag -->
-                            {{ total_comments }}</strong>
-                        {% endwith %}
+                            {% if user.is_authenticated and post.author == user %}
+                            <span>
+                                <a class="action-btn btn btn-info" href="{% url 'update_post' post.slug %}"
+                                    aria-label="edit-post">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </span>
+                            <span>
+                                <a class="action-btn btn btn-info" href="{% url 'delete_post' post.slug %}"
+                                    aria-label="delete-post">
+                                    <i class="fas fa-times"></i>
+                                </a>
+                            </span>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
-            <h3>Comments:</h3>
-            <div class="card-body">
-                <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
-                {% for comment in comments %}
-                <div class="comments" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
-                        {{ comment.name }}
-                        <span class=" text-muted font-weight-normal">
-                            <!-- The comment's created date goes here -->
-                            {{ comment.created_on }}
-                        </span>
-                        {% if user.is_authenticated and user.username == comment.name %}
-                        <span class="comment-action-btn pl-2">
-                            <a href="{% url 'update_comment' comment.id %}" aria-label="edit-comment"><i
-                                    class="fas fa-edit link-primary"></i></a>
-                            <a href="{% url 'delete_comment' comment.id %}" aria-label="delete-comment"><i
-                                    class="fas fa-times"></i></a>
-                        </span>
-                            {% endif %}
-                    </p>
-                    <!-- The body of the comment goes before the | -->
-                    {{ comment.body | linebreaks }}
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <div class="card mb-3 post-detail-card">
+                    <h5 class="card-header post-detail-header">
+                        Description
+                    </h5>
+                    <div class="card-body">
+                        <p class="card-text">{{ post.description | safe }}</p>
+                    </div>
                 </div>
-                <!-- Our for loop ends here -->
-                {% endfor %}
             </div>
         </div>
-        <div class="col-md-4 card mb-4  mt-3 ">
-            <div class="card-body">
-                <!-- For later -->
-                {% if commented %}
-                <div class="alert alert-success" role="alert">
-                    Your comment is awaiting approval
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-3 post-detail-card">
+                    <h5 class="card-header post-detail-header">Method</h5>
+                    <div class="card-body">
+                        <div class="card-text">{{ post.method | safe }}</div>
+                    </div>
                 </div>
-                {% else %}
-                {% if user.is_authenticated %}
-
-                <h3>Leave a comment:</h3>
-                <p>Posting as: {{ user.username }}</p>
-                <form method="post" style="margin-top: 1.3em;">
-                    {{ comment_form | crispy }}
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-                </form>
-                {% endif %}
-                {% endif %}
             </div>
         </div>
     </div>
 </div>
+
+<!-- Comments section -->
+{% if comments %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card post-detail-card">
+                <h3 class="card-header post-detail-header text-left">Comments</h3>
+                <div class="card-body">
+                    {% for comment in comments %}
+                    <div>
+                        <p class="font-weight-bold">
+                            {{ comment.name }}
+                            <span class=" text-muted font-weight-normal">
+                                {{ comment.created_on }}
+                            </span>
+                            {% if user.is_authenticated and user.username == comment.name %}
+                            <span class="comment-action-btn pl-2">
+                                <a href="{% url 'update_comment' comment.id %}" aria-label="edit-comment"><i
+                                        class="fas fa-edit link-primary"></i></a>
+                                <a href="{% url 'delete_comment' comment.id %}" aria-label="delete-comment"><i
+                                        class="fas fa-times"></i></a>
+                            </span>
+                            {% endif %}
+                        </p>
+                        {{ comment.body | linebreaks }}
+                        <hr>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if user.is_authenticated %}
+<!-- Create comment -->
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card post-detail-card mb-3 mt-3">
+                <div class="card-body">
+                    <p>Leave a comment as: {{ user.username }}</p>
+                    <form method="post">
+                        {{ comment_form | crispy }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-dark">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
 
 {% endblock content %}

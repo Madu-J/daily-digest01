@@ -46,6 +46,7 @@ body {
 .profile-icon {
     padding-right: 5px;
 }
+
 .hero-text-outer {
     background-color: #F4DDD8;
     min-height: 200px;
@@ -321,7 +322,8 @@ body {
     .mp-button, .action-btn {
         font-size: .75rem;
     }
- .navbar-nav {
+    
+    .navbar-nav {
         margin-left: 650px;
     }
 

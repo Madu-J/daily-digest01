@@ -24,8 +24,8 @@
                 <div class="card-body pb-1">
                     <h2 class="card-title post-detail-title text-truncate">{{ post.title }}</h2>
                     <p class="card-text">
-                        <span><i class="far fa-heart"></i></span>
-                       
+                        <span><i class="far fa-clock pr-2"></i></span>
+                        <span>Publish Time: {{ post.publish_time }}</span>
                     </p>
                     <a href="{% url 'post_detail' post.slug %}" class="stretched-link"
                         aria-label="post-detail"></a>

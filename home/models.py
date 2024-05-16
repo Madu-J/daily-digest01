@@ -61,7 +61,8 @@ class UserProfile(models.Model):
     method = models.TextField()
     status = models.IntegerField(choices=STATUS, default=1)
     description = models.TextField(blank=True, null=True)
-    user = models.OneToOneField(User, null=True, on_delete = models.CASCADE)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='user_profile')
     bio = models.TextField(max_length=200)
     website_url = models.CharField(max_length=200, null = True, blank = True)
     linkedin_url = models.CharField(max_length=200, null = True, blank = True)

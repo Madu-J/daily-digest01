@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from cloudinary.models import CloudinaryField
 from django_extensions.db.fields import AutoSlugField
-from .validators import textfield_not_empty
 
 
 STATUS = ((0, "Pending"), (1, "Published"))
@@ -15,7 +14,7 @@ class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="home_posts")
     publish_time = models.CharField(max_length=8, default=0)
-    method = models.TextField(validators=[textfield_not_empty])
+    method = models.TextField()
     description = models.TextField(blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=1)
@@ -57,6 +56,11 @@ class Comment(models.Model):
 
         
 class UserProfile(models.Model):
+    title = models.CharField(max_length=100, unique=True)
+    publish_time = models.CharField(max_length=8, default=0)
+    method = models.TextField()
+    status = models.IntegerField(choices=STATUS, default=1)
+    description = models.TextField(blank=True, null=True)
     user = models.OneToOneField(User, null=True, on_delete = models.CASCADE)
     bio = models.TextField(max_length=200)
     website_url = models.CharField(max_length=200, null = True, blank = True)

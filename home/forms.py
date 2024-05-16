@@ -1,6 +1,9 @@
 from django import forms
 from django_summernote.widgets import SummernoteWidget
-from .models import Comment, UserProfile
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from .models import Comment, UserProfile, Post
+from django.contrib.auth.models import User
 
 
 class CommentForm(forms.ModelForm):
@@ -14,7 +17,7 @@ class CommentForm(forms.ModelForm):
         fields = ('name', 'body',)
 
 
-@receiver()
+@receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
     Create or update the user profile
@@ -25,7 +28,7 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     instance.userprofile.save()
 
 class ProfileForm(forms.ModelForm):
-""" Create Profile Form """
+    """ Create Profile Form """
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
         self.fields['description'].widget = forms.Textarea(attrs={'rows': 3})
@@ -35,10 +38,10 @@ class ProfileForm(forms.ModelForm):
         fields = [
             'title', 'description',
             'publish_time', 'method',
-            'image', 'status',
-            ]
+            'image', 'status','bio', 
+        ]
 
     widgets = {
             'method': SummernoteWidget(),
-            'descriptons': SummernoteWidget(),
+            'descripton': SummernoteWidget(),
         }

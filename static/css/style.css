@@ -12,15 +12,15 @@ body {
     min-height: calc(100vh - 90px);
 }
 
-.pink-text {
-    color: #886363;
-    font-weight: 300;
+.blue-text {
+    color: #0000FF;
+    font-weight: 350;
 }
 
 .page-title {
     padding-top: 5px;
     color: #4A4A4F;
-    font-weight: 300;
+    font-weight: 350;
     text-align: center;
 }
 
@@ -29,14 +29,14 @@ body {
 }
 
 .navbar ul a {
-    color: #442E10;
+    color: #0000FF;
     font-weight: bold;
     font-size: 14px;
     text-transform: uppercase;
 }
 
 .navbar a:hover {
-    color: #886363;
+    color: #442E10;
 }
 
 .logo-image {
@@ -69,9 +69,9 @@ body {
 }
 
 .feature-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Lexend', sans-serif;
     font-size: 30px;
-    color: #886363;
+    color: #0000FF;
     padding-top: 10px;
     text-align: center;
 }
@@ -79,6 +79,30 @@ body {
 .feature-text {
     text-align: center;
     font-size: 17px;
+}
+
+.userpro-card 
+.card-img-top {
+    border-bottom: 1px,
+     solid #D8C14646;
+}
+
+.userpro-icon {
+    text-align: center;
+    color: #F4DDD8;
+    padding-top: 60px;
+}
+
+.userpro-card-header {
+    background-color: #F4DDD8;
+    border-bottom: 1px solid #D8C146;
+}
+
+.userpro-title {
+    text-align: center;
+    color: #442E10;
+    font-weight: 300;
+    font-size: 30px;
 }
 
 .post-card:hover {

@@ -25,23 +25,14 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
     # Existing users: just save the profile
-    instance.userprofile.save()
+    instance.user_profile.save()
 
 class ProfileForm(forms.ModelForm):
     """ Create Profile Form """
-    def __init__(self, *args, **kwargs):
-        super(ProfileForm, self).__init__(*args, **kwargs)
-        self.fields['description'].widget = forms.Textarea(attrs={'rows': 3})
 
     class Meta:
         model = UserProfile
         fields = [
-            'title', 'description',
-            'publish_time', 'method',
-            'image', 'status','bio', 
+            'image', 'user', 
+            'bio', 
         ]
-
-    widgets = {
-            'method': SummernoteWidget(),
-            'descripton': SummernoteWidget(),
-        }

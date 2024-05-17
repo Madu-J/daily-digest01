@@ -56,12 +56,7 @@ class Comment(models.Model):
 
         
 class UserProfile(models.Model):
-    title = models.CharField(max_length=100, unique=True)
-    publish_time = models.CharField(max_length=8, default=0)
-    method = models.TextField()
-    status = models.IntegerField(choices=STATUS, default=1)
-    description = models.TextField(blank=True, null=True)
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='user_profile')
     bio = models.TextField(max_length=200)
     website_url = models.CharField(max_length=200, null = True, blank = True)

@@ -47,6 +47,7 @@ body {
     padding-right: 5px;
 }
 
+
 .hero-text-outer {
     background-color: #F4DDD8;
     min-height: 200px;
@@ -309,20 +310,6 @@ body {
     color: #142a2b;
 }
 
-/* Media Queries */
-
-/* For Medium devices (tablets, less than 992px) */
-
-@media screen and (max-width: 991.98px) {
-    .hero-text {
-        font-size: 35px;
-    }
-  
-    .logo-image {
-        height: 75px;
-    }
-}
-
 /* Small devices (landscape phones, less than 768px */
 
 @media screen and (max-width: 767.98px) {
@@ -357,5 +344,17 @@ body {
 
     .about-header {
         margin-left: 716px;
+    }
+}
+
+/* For Medium devices (tablets, less than 992px) */
+
+@media screen and (max-width: 991.98px) {
+    .hero-text {
+        font-size: 35px;
+    }
+  
+    .logo-image {
+        height: 75px;
     }
 }

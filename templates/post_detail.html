@@ -22,45 +22,19 @@
                         </div>
                         <p class="card-text">Author: {{ post.author }}</p>
                         <div class="mb-5">
-                            <p>
-                                <span><i class="far fa-clock pr-2"> </i></span>
-                                <span>Prep Time: {{ post.publication_time }}</span>
-                            </p>
+                           
                             <p>
                                 <span><i class="far fa-clock pr-2"> </i></span>
                                 <span>Pub Time: {{ post.publish_time }}</span>
+                            </p>
+                            <p>
+                                <span><i class="far fa-clock pr-2"> </i></span>
+                                <span>Created: {{ post.created_on }}</span>
                             </p>
   
                         </div>
                         <!-- post action buttons -->
                         <div class="action-buttons-outer d-block">
-                            {% if user.is_authenticated %}
-                            <button type="button" class="btn btn btn-outline-dark mp-button rounded-pill mr-2"
-                                data-toggle="modal">
-                                <span><i class="fas fa-heart pr-1"></i></span>
-                               
-                            </button>
-                            <!--Userprofile -->
-                            <div>
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <form method="post" class="add-post">
-                                            <div class="modal-body">
-                                                {{ profile_form | crispy }}
-                                                {% csrf_token %}
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-outline-dark btn-sm">
-                                                    <span><i class="fas fa-heart pr-1"></i></span>
-                                                    Userprofile
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            <!-- -->
                             {% if user.is_authenticated %}
                             <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
                                 {% csrf_token %}
@@ -83,7 +57,7 @@
                                 </a>
                             </span>
                             <span>
-                                <a class="action-btn btn btn-info" href="{% url 'delete_post' post.slug %}"
+                                <a class="action-btn btn btn-info" href="{% url 'delete_post' post.pk %}"
                                     aria-label="delete-post">
                                     <i class="fas fa-times"></i>
                                 </a>

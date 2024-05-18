@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from .models import Post, Comment, UserProfile
-from .forms import CommentForm, ProfileForm
+from .forms import CommentForm, ProfileForm, PostForm
 
 
 class Home(generic.TemplateView):
@@ -40,7 +40,6 @@ class PostDetail(View):
                 "commented": False,
                 "liked": liked,
                 "comment_form": CommentForm(),
-                "profile_form": ProfileForm(),
             },
         )
     
@@ -83,7 +82,7 @@ class AddPost(
     SuccessMessageMixin, 
     generic.CreateView):
     """This view is used to allow logged in users to create a post"""
-    form_class = ProfileForm
+    form_class = PostForm
     template_name = 'add_post.html'
     success_message = "%(calculated_field)s was created successfully"
 
@@ -129,7 +128,7 @@ class UpdatePost(
     This view enables logged in users to edit their own posts
     """
     model = Post
-    form_class = ProfileForm
+    form_class = PostForm
     template_name = 'update_post.html'
     success_message = "%(calculated_field)s was edited successfully"
 
@@ -168,7 +167,7 @@ class DeletePost(
     model = Post
     template_name = 'delete_post.html'
     success_message = "Post deleted successfully"
-    success_url = reverse_lazy('user_post')
+    success_url = reverse_lazy('home')
 
     def test_func(self):
         """
@@ -214,7 +213,7 @@ class UpdateComment(LoginRequiredMixin, generic.UpdateView):
     def get_success_url(self):
         """ Return to post detail view when comment updated sucessfully"""
         post = self.object.post
-
+        messages.success(self.request, 'Comment successfully edited')
         return reverse_lazy('post_detail', kwargs={'slug': post.slug})
 
 

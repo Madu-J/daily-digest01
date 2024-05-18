@@ -27,6 +27,7 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     # Existing users: just save the profile
     instance.user_profile.save()
 
+
 class ProfileForm(forms.ModelForm):
     """ Create Profile Form """
 
@@ -35,4 +36,16 @@ class ProfileForm(forms.ModelForm):
         fields = [
             'image', 'user', 
             'bio', 
+        ]
+
+
+class PostForm(forms.ModelForm):
+    """ Create Profile Form """
+
+    class Meta:
+        model = Post
+        fields = [
+            'title', 'method', 
+            'description', 'image',
+            'publish_time',
         ]

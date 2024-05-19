@@ -1,45 +1,27 @@
 {% extends "base.html" %}
-{% block title %} Daily Digest | Update Profile{% endblock %}
+{% block title %} Daily Digest | Update Profile {% endblock %}
 {% block content %}
 {% load crispy_forms_tags %}
 
 <div class="container">
-    <h1 class="page-title">Update Profile</h1>
+    <h1 class="page-title">Update Profile </h1>
     <hr class="home-break">
     <br>
-    <div class="row">
-        <div class="col-md-6 masthead-text">
-            <!-- Post title goes in these h1 tags -->
-            <h1 class="post-title">{{ post.title }}</h1>
-            <!-- Post author goes before the | the post's created date goes after -->
-            <a href="{% url 'user_profile' user.pk %}">Update Profile</a>
+    <div class="row justify-content-center ">
+        {% if user.is_authenticated and post.author == user  %}
+        <!-- Checks the user is signed in and the post they're trying to access is owned by them -->
+        {% load cloudinary %}
+        <div class="col-11 col-md-8 col-lg-6 mt-3 add-post-outer">
+            <form method="post" class="add-post mb-5" enctype="multipart/form-data">
+                {{ form | crispy }}
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-dark">Update</button>
+                <a class="btn btn-outline-dark m-2" href="{% url 'user_profile' user.pk %}">Cancel</a>
+            </form>
         </div>
-        <div class="d-none d-md-block col-md-6 masthead-image">
-            <!-- The featured image URL goes in the src attribute -->
-            {% if "placeholder" in post.featured_image.url %}
-            <img src="https://res.cloudinary.com/dwzcuabfl/image/upload/v1715068361/static/default.b48f5bab742b.webp">
-            {% else %}
-            <img src=" {{ post.featured_image.url }}" width="100%">
-            {% endif %}
-        </div>
-        <div class="col-md-8 mt-3 offset-md-2">
-            <h3>{% trans "Sign In" %}</h3>
-            <p>{% blocktrans %}Welcome back to Daily Digest. To leave a comment, like or add a post, please log in. If you
-                have not created an account yet <a class="link" href="{{ signup_url }}">sign up</a>
-                first.{% endblocktrans %}</p>
-        </div>
-    </div>
-<div class="row">
-    <div class="col-md-8 mt-3 offset-md-2">
-        <form class="login" method="POST" action="{% url 'account_login' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-            {% endif %}
-            <button class="btn btn-signup right" type="submit">{% trans "Sign In" %}</button>
-        </form>
+        {% endif %}
     </div>
 </div>
-</div>
-{% endblock content %}
+
+{%endblock%}
+

@@ -19,7 +19,7 @@ body {
 
 .page-title {
     padding-top: 5px;
-    color: #4A4A4F;
+    color: #886363;
     font-weight: 350;
     text-align: center;
 }
@@ -42,11 +42,6 @@ body {
 .logo-image {
     height: 100px;
 }
-
-.profile-icon {
-    padding-right: 5px;
-}
-
 
 .hero-text-outer {
     background-color: #F4DDD8;
@@ -127,7 +122,7 @@ body {
 .post-detail-header {
     border: none;
     background-color: rgb(252, 247, 242);
-    color: #886363;
+    color: #0000FF;
 }
 
 .action-buttons-outer {
@@ -173,7 +168,7 @@ body {
 }
 
 .add-post label {
-    color: #886363;
+    color: #0000FF;
     font-weight: bold;
 } 
 

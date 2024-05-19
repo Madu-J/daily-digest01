@@ -82,30 +82,6 @@ body {
     font-size: 17px;
 }
 
-.userpro-card 
-.card-img-top {
-    border-bottom: 1px,
-     solid #D8C14646;
-}
-
-.userpro-icon {
-    text-align: center;
-    color: #F4DDD8;
-    padding-top: 60px;
-}
-
-.userpro-card-header {
-    background-color: #F4DDD8;
-    border-bottom: 1px solid #D8C146;
-}
-
-.userpro-title {
-    text-align: center;
-    color: #442E10;
-    font-weight: 300;
-    font-size: 30px;
-}
-
 .post-card:hover {
     box-shadow: 0px 0px 4px #D8C146;
 }
@@ -245,15 +221,6 @@ body {
     border: none;
 }
 
-.about-header {
-    margin-left: 125px;
-}
-
-.about-page {
-    margin: 10px;
-    text-align: left;
-}
-
 .signup, .login {
     text-align: center;
     padding: 20px 0;
@@ -336,14 +303,6 @@ body {
     
     .navbar-nav {
         margin-left: 650px;
-    }
-
-    .about-page {
-        margin: 50px;
-    }
-
-    .about-header {
-        margin-left: 716px;
     }
 }
 

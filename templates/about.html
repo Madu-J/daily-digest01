@@ -1,11 +1,13 @@
 {% extends "base.html" %}
-{% block title %}Daily Digest | About Page {% endblock %}
+{% block title %} Daily Digest | About Page {% endblock %}
 {% block content %}
 
-<br>
 <hr>
-<h5 class="about-header">About Page</h5>
-        <p class="about-page">
+<section class="container">
+    <div class="row">
+        <div class="col-12">
+        <h5 class="feature-title">About Page</h5>
+        <p>
         Daily Digest is blog website, that we aim to serve you with a round the clock news and happenings 
         around the globe whether it is sports, tech or business news. 
         Daily Digest has although just kicked started operation though not officially, but official date 
@@ -23,5 +25,8 @@
         Things to expect coming soon are as a user I can view number of views in each post to determine the most viewed post of the day,
          creating the unlike button, adding a function that will automatically allow user add their profile picture if they so wish 
          and adding edit profile account.
-    </p>
+        </p>
+    </div>
+</div>
+</section>
 {% endblock content %}

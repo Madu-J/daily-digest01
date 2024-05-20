@@ -35,7 +35,8 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ALLOWED_HOSTS = [
     'daily-digest01-135da823c1d2.herokuapp.com', 'localhost', 
-    '8000-maduj-dailydigest01-kjxp7ggfvmw.ws-eu114.gitpod.io', 
+    '8000-maduj-dailydigest01-kjxp7ggfvmw.ws-eu114.gitpod.io',
+    '8000-maduj-dailydigest01-kjxp7ggfvmw.ws-eu111.gitpod.io', 
 ]
 
 

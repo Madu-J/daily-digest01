@@ -18,7 +18,7 @@ class PostList(generic.ListView):
     model = Post
     queryset = Post.objects.filter(status=1).order_by("-created_on")
     template_name = "browse_posts.html"
-    paginate_by = 6
+    paginate_by = 4
 
 
 class PostDetail(View):
@@ -112,7 +112,7 @@ class UserPost(LoginRequiredMixin, generic.ListView):
     """
     model = Post
     template_name = 'user_post.html'
-    paginate_by = 6
+    paginate_by = 4
 
     def get_queryset(self):
         """Override get_queryset to filter by user"""

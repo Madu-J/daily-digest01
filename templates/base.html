@@ -15,14 +15,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="icon" type="image/png" sizes="32x32" 
-    href="https://res.cloudinary.com/dwzcuabfl/image/upload/v1708771458/static/summernote/summernote.5a782fa52e35.png">
 
 </head>
 
 <body>
-    
+<div class="content">   
 <!-- Navigation -->
 <header>
     <nav class="navbar navbar-expand-lg">
@@ -43,13 +43,9 @@
                         <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
                      </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'browse_posts' %}">Browse Posts</a>
+                        <a class="nav-link" href="{% url 'browse_posts' %}">Blog Posts</a>
                     </li>
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">News</a>
-                        </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
                         </li>
@@ -57,7 +53,7 @@
                             <a class="nav-link" href="{% url 'about' %}">About</a>
                         </li>
                         <li class="nav-item d-block d-lg-none">
-                            <a class="nav-link" href="{% url 'user_post' %}">My Blog</a>
+                            <a class="nav-link" href="{% url 'user_post' %}">User Post</a>
                         </li>
                         <li class="nav-item d-block d-lg-none">
                             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
@@ -81,8 +77,7 @@
                                     <span><i class="fas fa-user"></i>{{user.username}}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{% url 'user_post' %}">User Post</a>
-                                    <a class="dropdown-item"  href="{% url 'user_profile' user.pk%}">Profile</a>
+                                    <a class="dropdown-item" href="{% url 'user_post' %}">New Post</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
                                 </div>
@@ -124,7 +119,7 @@
     
 {% endblock content %}
 </main>
-
+</div>
 <!-- Footer -->
 <footer>
     <div class="container footer-container">
@@ -153,9 +148,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
     </script>
-    <!--CDN-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 </body>
 
 </html>

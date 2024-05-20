@@ -18,7 +18,7 @@ class PostList(generic.ListView):
     model = Post
     queryset = Post.objects.filter(status=1).order_by("-created_on")
     template_name = "browse_posts.html"
-    paginate_by = 4
+    paginate_by = 8
 
 
 class PostDetail(View):
@@ -73,7 +73,6 @@ class PostDetail(View):
                 "commented": True,
                 "liked": liked,
                 "comment_form": CommentForm(),
-                 "profile_form": ProfileForm(),
             },
         )
 
@@ -112,7 +111,7 @@ class UserPost(LoginRequiredMixin, generic.ListView):
     """
     model = Post
     template_name = 'user_post.html'
-    paginate_by = 4
+    paginate_by = 8
 
     def get_queryset(self):
         """Override get_queryset to filter by user"""
@@ -266,7 +265,7 @@ class PostLike(View):
 class UserProfile(LoginRequiredMixin, generic.DetailView):
      model = UserProfile
      form_class = ProfileForm
-     template_name = 'registration/profile.html'
+     template_name = 'user_profile.html'
 
      def get_context_data(self, *args, **kwargs):
         context = super(UserProfile, self).get_context_data(*args, kwargs)

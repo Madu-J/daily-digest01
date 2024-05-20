@@ -15,17 +15,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-    </script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/png" sizes="32x32" 
+    href="https://res.cloudinary.com/dwzcuabfl/image/upload/v1708771458/static/summernote/summernote.5a782fa52e35.png">
 
 </head>
 
 <body>
-    <div class="content">
+    
 <!-- Navigation -->
 <header>
     <nav class="navbar navbar-expand-lg">
@@ -60,10 +57,7 @@
                             <a class="nav-link" href="{% url 'about' %}">About</a>
                         </li>
                         <li class="nav-item d-block d-lg-none">
-                            <a class="nav-link" href="{% url 'user_post' %}">User Post</a>
-                        </li>
-                        <li class="nav-item d-block d-lg-none">
-                                <a class="nav-link" href="{% url 'user_profile' user.pk%}">Profile</a>
+                            <a class="nav-link" href="{% url 'user_post' %}">My Blog</a>
                         </li>
                         <li class="nav-item d-block d-lg-none">
                             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
@@ -130,7 +124,6 @@
     
 {% endblock content %}
 </main>
-</div>
 
 <!-- Footer -->
 <footer>
@@ -150,6 +143,19 @@
         alert.close();
     }, 4000);
 </script>
+<!--Bootstrap kits-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
+    </script>
+    <!--CDN-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 </body>
 
 </html>

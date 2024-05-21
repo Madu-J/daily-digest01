@@ -101,6 +101,10 @@ body {
     text-transform: capitalize
 }
 
+.browse-post-profile {
+    color: #886363;
+}
+
 .draft {
     color: red;
 }

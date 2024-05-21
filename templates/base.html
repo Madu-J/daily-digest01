@@ -38,6 +38,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <form method="GET" action="{% url 'home' %}" class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2 w-75" type="search" name="q" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-none my-2 my-sm-0" aria-label="search" type="submit"><i
+                        class="fa fa-search"></i></button>
+                  </form>
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item ">
                         <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>

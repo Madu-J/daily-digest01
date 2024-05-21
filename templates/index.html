@@ -53,10 +53,10 @@
         <div class="row">
             <div class="col-12 col-md-4 mb-2 col-sm-4">
                 <div class="feature-image mb-2">
-                    <i class="fas fa-search fa-6x"></i>
+                    <a class="nav-link browse-post-profile" href="{% url 'browse_posts' %}"><i class="fas fa-search fa-6x"></i></a>
                 </div>
                 <div>
-                    <h3 class="feature-title">Browse</h3>
+                    <h3 class="feature-title"><a class="nav-link" href="{% url 'browse_posts' %}">Browse</a></h3>
                     <p class="feature-text">
                         Your Daily Digest.. browse article
                     </p>
@@ -64,9 +64,9 @@
             </div>
             <div class="col-12 col-md-4 mb-2 col-sm-4">
                     <div class="feature-image mb-2">
-                        <i class="fas fa-newspaper fa-6x"></i>
+                        <a class="nav-link browse-post-profile" href="{% url 'add_post' %}"><i class="fas fa-newspaper fa-6x"></i></a>
                     </div>
-                    <h3 class="feature-title">Post</h3>
+                    <h3 class="feature-title"><a class="nav-link" href="{% url 'add_post' %}">Post</a></h3>
                     <p class="feature-text">
                          Read, add or manage your posts through our easy to use interface
                     </p>
@@ -74,8 +74,8 @@
             </div>
             <div class="col-12 col-md-4 mb-2 col-sm-4">
                 <div class="feature-image mb-2">
-                    <i class="fas fa-user fa-6x"></i>
-                    <h3 class="feature-title">Profile</h3>
+                    <a class="nav-link browse-post-profile" href="{% url 'account_signup' %}"><i class="fas fa-user fa-6x"></i></a>
+                    <h3 class="feature-title"><a class="nav-link" href="{% url 'account_signup' %}">Profile</a></h3>
                 </div>
             </div>
     </div>

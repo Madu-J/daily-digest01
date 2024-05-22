@@ -237,9 +237,7 @@ class DeleteComment(
     def delete(self, request, *args, **kwargs):
         """
         This function is used to display success message given
-        SuccessMessageMixin cannot be used in generic.DeleteView.
-        Credit: https://stackoverflow.com/questions/24822509/
-        success-message-in-deleteview-not-shown
+        SuccessMessageMixin cannot be used in generic.
         """
         messages.success(self.request, self.success_message)
         return super(DeleteComment, self).delete(request, *args, **kwargs)
@@ -283,7 +281,7 @@ class UpdateProfile(
     form_class = ProfileForm
     model = UserProfile
     template_name = 'registration/update_profile.html'
-    fields = ['bio', 'website_url', 'linkedin_url', 'facebook_url', 'twitter_url', 'instagram_url', 'image']
+    fields = ['website_url', 'linkedin_url', 'facebook_url', 'twitter_url', 'instagram_url',]
     success_message = "Profile edited successfully"
 
     def test_func(self):

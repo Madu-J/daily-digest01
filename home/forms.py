@@ -29,17 +29,19 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 
 class ProfileForm(forms.ModelForm):
-    """ Create Profile Form """
-    def __init__(self, *args, **kwargs):
-        super(ProfileForm, self).__init__(*args, **kwargs)
-        self.fields['description'].widget = forms.Textarea(attrs={'rows': 3})
+    """ Profile Form """
+    website_url = forms.CharField()
+    linkedin_url = forms.CharField()
+    facebook_url = forms.CharField()
+    twitter_url = forms.CharField()
+    instagram_url = forms.CharField()
 
     class Meta:
         model = UserProfile
-        fields = [
-            'user', 
-            'bio', 'image',
-        ]
+        fields = (
+           'website_url', 'linkedin_url', 'facebook_url', 
+           'twitter_url', 'instagram_url',
+        )
 
 
 class PostForm(forms.ModelForm):

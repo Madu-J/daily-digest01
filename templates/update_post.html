@@ -16,7 +16,7 @@
             <form method="post" class="add-post mb-5" enctype="multipart/form-data">
                 {{ form | crispy }}
                 {% csrf_token %}
-                <button type="submit" class="btn btn-outline-dark">Update</button>
+                <button type="submit" class="btn btn-outline-dark">Update Post</button>
                 <a class="btn btn-outline-dark m-2" href="{%  url 'post_detail' post.slug  %}">Cancel</a>
             </form>
         </div>

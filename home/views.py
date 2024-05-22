@@ -265,7 +265,7 @@ class PostLike(View):
 class UserProfile(LoginRequiredMixin, generic.DetailView):
      model = UserProfile
      form_class = ProfileForm
-     template_name = 'user_profile.html'
+     template_name = 'registration/user_profile.html'
 
      def get_context_data(self, *args, **kwargs):
         context = super(UserProfile, self).get_context_data(*args, kwargs)
@@ -281,7 +281,8 @@ class UpdateProfile(
     SuccessMessageMixin, generic.UpdateView):
     form_class = ProfileForm
     model = UserProfile
-    template_name = 'update_profile.html'
+    template_name = 'registration/update_profile.html'
+    fields = ['bio', 'website_url', 'linkedin_url', 'facebook_url', 'twitter_url', 'instagram_url', 'image']
     success_message = "Profile edited successfully"
 
     def test_func(self):

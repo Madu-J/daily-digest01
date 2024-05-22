@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block title %} Daily Digest | New Post {% endblock %}
+{% block title %} Daily Digest | User Post {% endblock %}
 {% block content %}
 
 {% if user.is_authenticated %}
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1 class="page-title">New post</h1>
+            <h1 class="page-title">User Post</h1>
         </div>
     </div>
     <hr class="home-break">
@@ -17,7 +17,7 @@
         <div class="col-sm-6 col-md-4 col-lg-3 px-1 d-flex align-items-stretch">
             <div class="card card-detail post-card mb-3 shadow-sm mx-auto mx-sm-2">
                 {% if "placeholder" in post.image.url %}
-                <img src="https://keestalkstech.com/wp-content/uploads/2019/09/amazon-s3-logo.png"
+                <img src="https://res.cloudinary.com/dwzcuabfl/image/upload/v1708771458/static/summernote/summernote.5a782fa52e35.png"
                     class="card-img-top" alt="placeholder image">
                 {% else %}
                 <img src=" {{ post.image.url }}" alt="post image" class="card-img-top">

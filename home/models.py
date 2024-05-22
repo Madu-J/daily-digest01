@@ -58,7 +58,7 @@ class Comment(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='user_profile')
-    bio = models.TextField(max_length=200)
+    bio = models.TextField(max_length=200, null = True, blank = True)
     website_url = models.CharField(max_length=200, null = True, blank = True)
     linkedin_url = models.CharField(max_length=200, null = True, blank = True)
     facebook_url = models.CharField(max_length=200, null = True, blank = True)

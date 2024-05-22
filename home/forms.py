@@ -30,12 +30,15 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 class ProfileForm(forms.ModelForm):
     """ Create Profile Form """
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        self.fields['description'].widget = forms.Textarea(attrs={'rows': 3})
 
     class Meta:
         model = UserProfile
         fields = [
-            'image', 'user', 
-            'bio', 
+            'user', 
+            'bio', 'image',
         ]
 
 

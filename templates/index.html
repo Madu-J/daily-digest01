@@ -70,12 +70,12 @@
                     <p class="feature-text">
                          Read, add or manage your posts through our easy to use interface
                     </p>
-           
             </div>
             <div class="col-12 col-md-4 mb-2 col-sm-4">
                 <div class="feature-image mb-2">
                     <a class="nav-link browse-post-profile" href="{% url 'account_signup' %}"><i class="fas fa-user fa-6x"></i></a>
-                    <h3 class="feature-title"><a class="nav-link" href="{% url 'account_signup' %}">Profile</a></h3>
+                    <h3 class="feature-title"><a class="nav-link" href="{% url 'user_profile' user.pk %}">Profile</a></h3>
+                    <p class="feature-text">Welcome back !</p>
                 </div>
             </div>
     </div>

@@ -266,7 +266,8 @@ class UserProfile(LoginRequiredMixin, generic.DetailView):
      model = UserProfile
      form_class = ProfileForm
      template_name = 'registration/user_profile.html'
-
+     success_message = "%(calculated_field)s was edited successfully"
+       
      def get_context_data(self, *args, **kwargs):
         context = super(UserProfile, self).get_context_data(*args, kwargs)
         user_profile = get_object_or_404(UserProfile, id=self.kwargs['pk'])

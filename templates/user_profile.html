@@ -1,26 +1,46 @@
-{% extends "base.html" %}
+{% extends "home/base.html" %}
 {% block title %} Daily Digest | Profile Page {% endblock %}
-{% load crispy_forms_tags %}
+
 
 {% block content %}
-           
+<!--Icon library-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 <div class="container">
-  <h1 class="page-title"> Profile Page </h1>
-  <hr class="home-break">
-  <br>
-  <div class="row justify-content-center ">
-      {% if user.is_authenticated and post.author == user  %}
-      <!-- Checks the user is signed in and the post they're trying to access is owned by them -->
-      {% load cloudinary %}
-      <div class="col-11 col-md-8 col-lg-6 mt-3 add-post-outer">
-          <form method="post" class="add-post mb-5" enctype="multipart/form-data">
-              {{ form | crispy }}
-              {% csrf_token %}
-              <button type="submit" class="btn btn-outline-dark">Profile</button>
-              <a class="btn btn-outline-dark m-2" href="{% url 'user_profile' user.pk %}">Cancel</a>
-          </form>
-      </div>
-      {% endif %}
-  </div>
+<div class="card mb-3 post-detail-card">
+<div class="col-12 col-md-4">
+<!-- The featured image URL goes in the src attribute -->
+{% if "placeholder" in user.featured_image.url %}
+<img src="user.user_profile.image.url" alt="headerlogo">
+{% else %}
+<img src=" {{ post.featured_image.url }}" width="100%">
+{% endif %}
 </div>
-{%endblock%}
+</div>
+           
+  <br>
+    <!-- My Socials -->
+    <h3 class="feature-text">Sign up with your social account</h3>
+    <h3 id="profile">{{user.username|title}}</h3>
+    <a href="" id="auth-links">LinkedIn</a>
+    <a href="" id="auth-links">Facebook</a>
+    <a href="" id="auth-links">Twitter</a>
+    <a href="" id="auth-links">Instagram</a>
+    <div class="col-11 col-md-8 col-lg-6 mt-3 add-post-outer">
+        <form method="post" class="add-post mb-5" enctype="multipart/form-data">
+            {{ form | crispy }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-dark">User Profile</button>
+            <a class="btn btn-outline-dark m-2" href="{% url 'user_profile' user.pk %}">Cancel</a>
+        </form>
+    </div>
+    <p><button id="btn-profile">
+        <a href="#" id="auth-links">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        User Profile
+    </button></p>
+</div>
+{% endblock content %}

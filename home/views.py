@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from .models import Post, Comment, UserProfile
-from .forms import CommentForm, ProfileForm, PostForm
+from .forms import CommentForm, ProfileForm, PostForm, EditProfileForm
 
 
 class Home(generic.TemplateView):
@@ -278,7 +278,7 @@ class UserProfile(LoginRequiredMixin, generic.DetailView):
 class UpdateProfile(
     LoginRequiredMixin, UserPassesTestMixin, 
     SuccessMessageMixin, generic.UpdateView):
-    form_class = ProfileForm
+    form_class = EditProfileForm
     model = UserProfile
     template_name = 'registration/update_profile.html'
     fields = ['website_url', 'linkedin_url', 'facebook_url', 'twitter_url', 'instagram_url',]

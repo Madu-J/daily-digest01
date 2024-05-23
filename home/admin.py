@@ -27,4 +27,4 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(UserProfile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'bio')
+    list_display = ( 'user', 'bio' )

@@ -5,12 +5,12 @@ from .models import UserProfile
 
 # To create a profile picture
 @receiver(post_save, sender=User)
-def create_profile(sender, instance, created, **kwargs):
+def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
 
 # To save profile picture
 @receiver(post_save, sender=User)
-def save_profile(sender, instance, **kwargs):
+def save_user_profile(sender, instance, **kwargs):
     instance.UserProfile.save()
     

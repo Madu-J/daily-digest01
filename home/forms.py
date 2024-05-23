@@ -30,22 +30,21 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 class ProfileForm(forms.ModelForm):
     """ Profile Form """
-    website_url = forms.CharField()
-    linkedin_url = forms.CharField()
-    facebook_url = forms.CharField()
-    twitter_url = forms.CharField()
-    instagram_url = forms.CharField()
 
     class Meta:
         model = UserProfile
-        fields = (
-           'website_url', 'linkedin_url', 'facebook_url', 
-           'twitter_url', 'instagram_url',
-        )
+        fields = [ 'bio', 'website_url', 
+        'linkedin_url', 'facebook_url', 
+        'twitter_url', 'instagram_url', ]
+
+class EditProfileForm(forms.ModelForm):
+
+    model = UserProfile
+    fields = ['image']
 
 
 class PostForm(forms.ModelForm):
-    """ Create Profile Form """
+    """ Create Post Form """
 
     class Meta:
         model = Post

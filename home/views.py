@@ -263,24 +263,34 @@ class PostLike(View):
 class UserProfile(LoginRequiredMixin, generic.DetailView):
      model = UserProfile
      form_class = ProfileForm
-     template_name = 'registration/user_profile.html'
-     success_message = "%(calculated_field)s was edited successfully"
-       
-     def get_context_data(self, *args, **kwargs):
-        context = super(UserProfile, self).get_context_data(*args, kwargs)
-        user_profile = get_object_or_404(UserProfile, id=self.kwargs['pk'])
-        post = Post.objects.filter(author=user_profile.user).order_by('-publish_time')
-        context['user_profile'] = user_profile
-        context['post'] = post
-        return context
+     template_name = 'user_profile.html'
 
 
-class UpdateProfile(
-    LoginRequiredMixin, UserPassesTestMixin, 
+def user_profile(request):
+    if request.method == "POST":
+        p_form = ProfileForm(request.POST, instance=request.user)
+        e_form = EditProfileForm(request.POST, request.FILES, instance=request.user.user_profile)
+        if p_form.is_valid() and e_form.is_valid():
+            p_form.save()
+            e_form.save()
+            message.success(request, f'Your edited successfully')
+            return redirect('user_profile')
+    else:
+            p_form = ProfileForm(instance=request.user)
+            e_form = EditProfileForm(instance=request.user.user_profile)
+
+    context = {
+        'p_form': p_form,
+        'e_form': e_form
+    }
+    return render(request, 'user_profile.html', context)
+
+
+class UpdateProfile( 
     SuccessMessageMixin, generic.UpdateView):
     form_class = EditProfileForm
     model = UserProfile
-    template_name = 'registration/update_profile.html'
+    template_name = 'update_profile.html'
     fields = ['website_url', 'linkedin_url', 'facebook_url', 'twitter_url', 'instagram_url',]
     success_message = "Profile edited successfully"
 
@@ -288,14 +298,14 @@ class UpdateProfile(
         """
         Prevent another user from editing user's profile
         """
-        profile = self.get_object()
-        return comment.name == self.request.user.username
+        user_profile = self.get_object()
+        return user_profile.user == self.request.user.username
 
     def get_success_url(self):
         """ Return to post detail view when profile updated sucessfully"""
-        post = self.object.post
+        user_profile = self.object.user_profile
 
-        return reverse_lazy('post_detail', kwargs={'slug': post.slug})
+        return reverse_lazy('update_profile.html', kwargs={'slug': post.slug})
 
 
     

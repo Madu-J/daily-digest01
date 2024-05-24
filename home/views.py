@@ -261,12 +261,20 @@ class PostLike(View):
 
 
 class UserProfile(LoginRequiredMixin, generic.DetailView):
-     model = UserProfile
-     form_class = ProfileForm
-     template_name = 'user_profile.html'
-
+    model = UserProfile
+    form_class = ProfileForm
+    template_name = 'user_profile.html'
 
 def user_profile(request):
+    return render(request, 'user_profile.html')
+
+
+class UpdateProfile( 
+    SuccessMessageMixin, generic.UpdateView):
+    form_class = EditProfileForm
+    template_name = 'update_profile.html'
+
+def update_profile(request):
     if request.method == "POST":
         p_form = ProfileForm(request.POST, instance=request.user)
         e_form = EditProfileForm(request.POST, request.FILES, instance=request.user.user_profile)
@@ -283,30 +291,7 @@ def user_profile(request):
         'p_form': p_form,
         'e_form': e_form
     }
-    return render(request, 'user_profile.html', context)
-
-
-class UpdateProfile( 
-    SuccessMessageMixin, generic.UpdateView):
-    form_class = EditProfileForm
-    model = UserProfile
-    template_name = 'update_profile.html'
-    fields = ['website_url', 'linkedin_url', 'facebook_url', 'twitter_url', 'instagram_url',]
-    success_message = "Profile edited successfully"
-
-    def test_func(self):
-        """
-        Prevent another user from editing user's profile
-        """
-        user_profile = self.get_object()
-        return user_profile.user == self.request.user.username
-
-    def get_success_url(self):
-        """ Return to post detail view when profile updated sucessfully"""
-        user_profile = self.object.user_profile
-
-        return reverse_lazy('update_profile.html', kwargs={'slug': post.slug})
-
+    return render(request, 'update_profile.html', context)
 
     
 class AboutPage(generic.TemplateView):

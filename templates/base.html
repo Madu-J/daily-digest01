@@ -61,13 +61,10 @@
                             <a class="nav-link" href="{% url 'about' %}">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'user_profile' user.pk %}">Profile</a>
+                            <a class="nav-link" href="{% url 'user_profile' user.pk %}">My Page</a>
                         </li>
                         <li class="nav-item d-block d-lg-none">
                             <a class="nav-link" href="{% url 'user_post' %}">User Post</a>
-                        </li>
-                        <li class="nav-item d-block d-lg-none">
-                            <a class="nav-link" href="{% url 'update_profile' user.pk %}">Edit Profile</a>
                         </li>
                         <li class="nav-item d-block d-lg-none">
                             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
@@ -91,8 +88,9 @@
                                     <span><i class="fas fa-user"></i>{{user.username}}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{% url 'user_post' %}">User Post</a>
-                                    <a class="nav-link" href="{% url 'update_profile' user.pk %}">Edit Profile</a>
+                                    <a class="dropdown-item" href="{% url 'user_post' %}">My Post</a>
+                                    <a class="nav-link" href="{% url 'user_profile' user.pk %}">My Page</a>
+                                    <a class="nav-link" href="{% url 'update_profile' user.pk %}">Edit Page</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
                                 </div>

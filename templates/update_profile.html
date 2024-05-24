@@ -7,7 +7,7 @@
     <h1 class="page-title">Update Profile </h1>
     <hr class="home-break">
     <br>
-    <div class="row justify-content-center ">
+    <div class="row justify-content-center">
         {% if user.is_authenticated and post.author == user  %}
         <!-- Checks the user is signed in and the post they're trying to access is owned by them -->
         {% load cloudinary %}
@@ -15,7 +15,7 @@
             <form method="post" class="add-post mb-5" enctype="multipart/form-data">
                 {{ p_form | crispy }}
                 {{ e_form | crispy }}
-                <button type="submit" class="btn btn-outline-dark">Update Profile</button>
+                <button type="submit" class="btn btn-outline-dark">Edit Page</button>
                 <a class="btn btn-outline-dark m-2" href="{% url 'user_profile' user.pk %}">Cancel</a>
             </form>
         </div>

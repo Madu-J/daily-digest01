@@ -39,7 +39,7 @@ body {
     color: #442E10;
 }
 
-.logo-image {
+.logo-img {
     height: 80px;
 }
 
@@ -283,13 +283,17 @@ body {
         width: 100%;
     }
     
-    .logo-image {
-        height: 70px;
+    .logo-img {
+        height: 50px;
     }
 
     .social-networks i {
         font-size: 120%;
         padding: 0 20px;
+    }
+
+    .fa-search {
+        width: 10%;
     }
 
     .card-detail {

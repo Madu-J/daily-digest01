@@ -269,10 +269,11 @@ def user_profile(request, pk):
     return render(request, 'user_profile.html')
 
 
-class UpdateProfile( 
+class UpdateProfile(
     SuccessMessageMixin, generic.UpdateView):
     form_class = EditProfileForm
     template_name = 'update_profile.html'
+
 
 def update_profile(request):
     if request.method == "POST":
@@ -284,8 +285,8 @@ def update_profile(request):
             message.success(request, f'Your edited successfully')
             return redirect('user_profile')
     else:
-            p_form = ProfileForm(instance=request.user)
-            e_form = EditProfileForm(instance=request.user.user_profile)
+        p_form = ProfileForm(instance=request.user)
+        e_form = EditProfileForm(instance=request.user.user_profile)
 
     context = {
         'p_form': p_form,
@@ -293,6 +294,6 @@ def update_profile(request):
     }
     return render(request, 'update_profile.html', context)
 
-    
+
 class AboutPage(generic.TemplateView):
     template_name = "about.html"

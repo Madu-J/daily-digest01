@@ -265,7 +265,7 @@ class UserProfile(LoginRequiredMixin, generic.DetailView):
     form_class = ProfileForm
     template_name = 'user_profile.html'
 
-def user_profile(request):
+def user_profile(request, pk):
     return render(request, 'user_profile.html')
 
 

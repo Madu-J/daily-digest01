@@ -14,10 +14,16 @@
     - [As a **returning user**](#as-a-returning-user)
   - [UAC](#uac)
     - [Home Page](#home-page)
+    -  [Blog-Posts Page](#blog-posts-page)
+    -  [Add-Post Page](#add-post-page)
      - [About Page](#about-page)
-     - [Profile Profile](#profile-page)
-    - [Sign Up Page](#sign-up-page)
-    - [Sign In Page](#sign-in-page)
+     - [My-Page](#my-page)
+  - [Sign In](#user-icon)
+    - - [Log In Page](#log-in-page)
+    - - [Sign Up Page](#sign-up-page)
+    - - [My Post Page](#my-post)
+    - - [My Page](#my-page)
+    - - [Log Out Page](#log-out-page)
       - [User Goal](#user-goal)
       - [Website Goal](#website-goal)
     - [Posts Page](#posts-page)
@@ -152,31 +158,27 @@ User Acceptance Criteria based on the user stories:
 
 ### Home Page
 
-![Home-Page](media/home.png)
+![Home-Page](media/home.png.png)
 
 - Displays the main purpose and topic of the site.
 - Addresses questions and doubts the first-time users might have and provides a registration form.
 - Presents opportunities for possible further actions
 
-    #### User Goal
+![Blog Posts page](media/bloposts.png)
 
-    > - Understand the main purpose of the website.
-    > - Be able to add personal story
-    > - Be able to signing up/in.
-    > - Easily navigate and interact with the website.
-    > - Access social media.
+- Shows posts.
+- Allows users to easily find and access posts.
+- Allows opening each post on a separate page.
+- Available only for all users.
 
-    #### Website Goal
+### Add Post 
 
-    > - Inform the user about the main purpose.
-    > - Engage the user.
-    > - Call to action.
-    > - Initiate future engagement, such as following on social media.
-    > - Provide aesthetically pleasing user experience.
+- Allows User Create post.
+![](media/addpost.png).
 
 ### About Page
 
-![About-Page](media/about-us.png)
+![About-Page](media/about.png.png)
 
 - Allows User to get to know what the website is all about.
 
@@ -184,10 +186,15 @@ User Acceptance Criteria based on the user stories:
 
    > - To allow User have some knowledge about the website.
 
-### Profile Page
+### My Post
 
--Allows User Createprofile page
-![](media/profile-page.png).
+- Shows post Created by loggin user.
+![My POst](media/mypost.png).
+
+### My Page
+
+- User profile page.
+![](media/mypage.png).
 
 
 ####
@@ -228,15 +235,6 @@ User Acceptance Criteria based on the user stories:
 
   > - Allow the user to sign in easily.
   > - Provide aesthetically pleasing user experience.
-
-### Posts Page
-
-![Home](media/home.png)
-
-- Shows posts.
-- Allows users to easily find and access posts.
-- Allows opening each post on a separate page.
-- Available only for all users.
 
 #### User Goal
 

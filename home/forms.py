@@ -33,7 +33,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = [ 'bio', 'website_url', 
+        fields = ['bio', 'website_url', 
         'linkedin_url', 'facebook_url', 
         'twitter_url', 'instagram_url', ]
 

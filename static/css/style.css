@@ -93,6 +93,10 @@ body {
     color: #886363;
 }
 
+.post-png{
+    position: relative;
+   float: left;
+}
 
 .post-detail-title {
     font-size: 20px;

@@ -443,10 +443,11 @@ I have tested this project code by
 - Pasting the code on PEP8 linter and no error found.
 - Tested after deployment on Code Institute Heroku terminal and it run successfully.
 
-![Models.py](test-models.py.)
-![views.py](tested-views.py)
-![urls.py](tested-urls)
-![admin.py](tested-admin-file)
+![Models.py](media/models.png)
+![views.py](media/views.png)
+![form-tested](media/form.png)
+![url-tested](media/url.png)
+![admin.tested](media/adminn.png)
 
 ### Blog Host
 

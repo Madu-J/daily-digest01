@@ -42,7 +42,7 @@ class PostDetail(View):
                 "comment_form": CommentForm(),
             },
         )
-    
+
     def post(self, request, slug, *args, **kwargs):
 
         queryset = Post.objects.filter(status=1)
@@ -76,9 +76,10 @@ class PostDetail(View):
             },
         )
 
+
 class AddPost(
-    LoginRequiredMixin, 
-    SuccessMessageMixin, 
+    LoginRequiredMixin,
+    SuccessMessageMixin,
     generic.CreateView):
     """This view is used to allow logged in users to create a post"""
     form_class = PostForm
@@ -158,8 +159,8 @@ class UpdatePost(
 
 
 class DeletePost(
-        LoginRequiredMixin, 
-        UserPassesTestMixin, generic.DeleteView):
+    LoginRequiredMixin,
+    UserPassesTestMixin, generic.DeleteView):
     """
     This view enables logged in users to delete their own posts.
     """
@@ -178,8 +179,8 @@ class DeletePost(
     def delete(self, request, *args, **kwargs):
         """
         Displays sucess message and cannot be used in generic.DeleteView.
-     
-   
+
+
         """
         messages.success(self.request, self.success_message)
         return super(DeletePost, self).delete(request, *args, **kwargs)
@@ -216,9 +217,9 @@ class UpdateComment(LoginRequiredMixin, generic.UpdateView):
         return reverse_lazy('post_detail', kwargs={'slug': post.slug})
 
 
-class DeleteComment( 
-    LoginRequiredMixin, 
-    UserPassesTestMixin, 
+class DeleteComment(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
     generic.DeleteView):
     """
     This view is used to allow logged in users to delete their own comments
@@ -264,6 +265,7 @@ class UserProfile(LoginRequiredMixin, generic.DetailView):
     model = UserProfile
     form_class = ProfileForm
     template_name = 'user_profile.html'
+
 
 def user_profile(request, pk):
     return render(request, 'user_profile.html')

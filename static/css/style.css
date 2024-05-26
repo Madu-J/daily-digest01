@@ -93,11 +93,6 @@ body {
     color: #886363;
 }
 
-.post-png{
-    position: relative;
-   float: left;
-}
-
 .post-detail-title {
     font-size: 20px;
 }
@@ -307,6 +302,10 @@ body {
     
     .navbar-nav {
         margin-left: 650px;
+    }
+
+    .post-png{
+        width: 100%;
     }
 }
 

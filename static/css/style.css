@@ -4,7 +4,7 @@
 /* General styling*/
 body {
     font-family: 'Lexend', sans-serif;
-    font-weight: 350;
+    font-weight: 400;
     background-color: #F9FAFC;
 }
 
@@ -14,13 +14,13 @@ body {
 
 .blue-text {
     color: #0000FF;
-    font-weight: 350;
+    font-weight: 400;
 }
 
 .page-title {
     padding-top: 5px;
     color: #0000FF;
-    font-weight: 350;
+    font-weight: 400;
     text-align: center;
 }
 
@@ -101,7 +101,7 @@ body {
     text-transform: capitalize
 }
 
-.browse-post-profile {
+.browse-post {
     color: #886363;
 }
 
@@ -300,12 +300,19 @@ body {
        width: 300px;
     }
 
-    .mp-button, .action-btn {
-        font-size: .75rem;
+    .mb-2, .my-2 {
+        margin-bottom: .5rem;
     }
-    
+
     .navbar-nav {
-        margin-left: 650px;
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;
+        list-style: none;
+    }
+
+    dl, ol, ul {
+        margin-top: 0;
     }
 
     .post-png{

@@ -25,18 +25,20 @@
             <a href="https://instagram.com/" id="auth-links">Instagram</a>
             
                 <form method="post" class="add-post mb-5" enctype="multipart/form-data">
-                    {{ p_form | crispy }}
-                    {{ e_form | crispy }}
+                    {{ form | crispy }}
+
+                    <button type="submit" class="btn btn-outline-dark">Edit Page</button>
+                <a class="btn btn-outline-dark m-2" href="{% url 'user_profile' user.pk %}">Cancel</a>
                 </form>
             {% comment %}
-            <!--<p><button id="btn-profile">
+            <p><button id="btn-profile">
                 <a href="#" id="auth-links">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
                 User Profile
-            </button></p>-->
+            </button></p>
             {% endcomment %}
         </div>
     </div>

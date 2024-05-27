@@ -53,10 +53,10 @@
         <div class="row">
             <div class="col-12 col-md-4 mb-2 col-sm-4">
                 <div class="feature-image mb-2">
-                    <a class=" browse-post-" href="{% url 'browse_posts' %}"><i class="fas fa-search fa-6x"></i></a>
+                    <a class="browse-post" href="{% url 'browse_posts' %}"><i class="fas fa-search fa-6x"></i></a>
                 </div>
                 <div>
-                    <h3 class="feature-title"><a class="#" href="{% url 'browse_posts' %}">Browse</a></h3>
+                    <h3 class="feature-title"><a href="{% url 'browse_posts' %}">Browse</a></h3>
                     <p class="feature-text">
                         Your Daily Digest.. browse article
                     </p>
@@ -64,9 +64,9 @@
             </div>
             <div class="col-12 col-md-4 mb-2 col-sm-4">
                     <div class="feature-image mb-2">
-                        <a class="#" href="{% url 'add_post' %}"><i class="fas fa-newspaper fa-6x"></i></a>
+                        <a href="{% url 'add_post' %}"><i class="fas fa-newspaper fa-6x"></i></a>
                     </div>
-                    <h3 class="feature-title"><a class="#" href="{% url 'add_post' %}">Post</a></h3>
+                    <h3 class="feature-title"><a href="{% url 'add_post' %}">Post</a></h3>
                     <p class="feature-text">
                          Read, add or manage your posts through our easy to use interface
                     </p>
@@ -74,7 +74,7 @@
             <div class="col-12 col-md-4 mb-2 col-sm-4">
                 <div class="feature-image mb-2">
                     <a class=" browse-post" href="#"><i class="fas fa-user fa-6x"></i></a>
-                    <h3 class="feature-title"><a class="#" href="{% url 'user_profile' user.pk %}">Profile</a></h3>
+                    <h3 class="feature-title"><a href="{% url 'user_profile' user.pk %}">Profile</a></h3>
                     <p class="feature-text">Welcome back !
                         Sign up with your social account
                     </p>

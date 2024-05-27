@@ -360,10 +360,11 @@ The project uses Django's built-in User model, which means that users can regist
 
 The website also provides a password reset feature, which is an important security feature that allows users to reset their password if they have forgotten it or if their account has been compromised.
 
-## Responsive ([uac 1](#uac1))
+## Responsive ([uac 1](uac1))
 
 Daily Digest website is designed with flexibility and aesthetic appeal in mind, ensuring that it is responsive and visually pleasing on all screen sizes and resolutions, starting at 350px.
 Responsiveness was achieved by utilizing Bootstrap. This allowed for the rearrangement of page components to optimize the user experience on different screen sizes. Breakpoints were chosen based on typical device screen sizes and the goal of providing the best possible presentation of content for all screens. Breakpoints are not strictly consistent (\*particularly for smaller screens) but it is done intentionally to provide a better presentation of the content for all screens.
+![Responsive](media/login respo.png)
 
 ## Accessibility
 
@@ -444,7 +445,7 @@ I have tested this project code by
 - Tested after deployment on Code Institute Heroku terminal and it run successfully.
 
 ![Models.py](media/models.png)
-![views.py](media/views.png)
+![views.py](media/view.png)
 ![form-tested](media/form.png)
 ![url-tested](media/url.png)
 ![admin.tested](media/adminn.png)
@@ -508,3 +509,7 @@ This project was deployed using Code Institute's mock terminal for Heroku and th
 
 - AliOKeeffe <https://github.com/AliOKeeffe>
 - Desphixs
+- Code Institute, I think before I blog tutorial.
+- Slack Overflow
+- Some good tutors at Code Institute.
+- Anto Rodriguez "Mentor"

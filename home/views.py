@@ -123,7 +123,6 @@ class UpdatePost(
         LoginRequiredMixin, UserPassesTestMixin,
         SuccessMessageMixin, generic.UpdateView
         ):
-
     """
     This view enables logged in users to edit their own posts
     """
@@ -217,10 +216,7 @@ class UpdateComment(LoginRequiredMixin, generic.UpdateView):
         return reverse_lazy('post_detail', kwargs={'slug': post.slug})
 
 
-class DeleteComment(
-    LoginRequiredMixin,
-    UserPassesTestMixin,
-    generic.DeleteView):
+class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     """
     This view is used to allow logged in users to delete their own comments
     """

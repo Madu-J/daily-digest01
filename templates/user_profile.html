@@ -27,11 +27,8 @@
                 <form method="post" class="add-post mb-5" enctype="multipart/form-data">
                     {{ p_form | crispy }}
                     {{ e_form | crispy }}
-                    <!--<button type="submit" class="btn btn-outline-dark">Update Profile</button>
-                    <a class="btn btn-outline-dark m-2" href="{% url 'update_profile' user.pk %}">Cancel</a>-->
                 </form>
-            
-    
+            {% comment %}
             <!--<p><button id="btn-profile">
                 <a href="#" id="auth-links">
                 <span></span>
@@ -40,6 +37,7 @@
                 <span></span>
                 User Profile
             </button></p>-->
+            {% endcomment %}
         </div>
     </div>
 </div>

@@ -17,31 +17,12 @@ class CommentForm(forms.ModelForm):
         fields = ('name', 'body',)
 
 
-@receiver(post_save, sender=User)
-def create_or_update_user_profile(sender, instance, created, **kwargs):
-    """
-    Create or update the user profile
-    """
-    if created:
-        UserProfile.objects.create(user=instance)
-    # Existing users: just save the profile
-    instance.user_profile.save()
-
-
 class ProfileForm(forms.ModelForm):
-    """ Profile Form """
-
+    
     class Meta:
-        model = UserProfile
-        fields = ['bio', 'website_url', 
-        'linkedin_url', 'facebook_url', 
-        'twitter_url', 'instagram_url', ]
-
-class EditProfileForm(forms.ModelForm):
-
-    model = UserProfile
-    fields = ['image']
-
+            model = UserProfile
+            fields = [ 'user', 'bio',
+        ]
 
 class PostForm(forms.ModelForm):
     """ Create Post Form """

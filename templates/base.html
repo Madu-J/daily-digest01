@@ -86,8 +86,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{% url 'user_post' %}">My Post</a>
-                                    <a class="nav-link" href="{% url 'user_profile' user.pk %}">My Page</a>
-                                    <a class="nav-link" href="{% url 'update_profile' user.pk %}">Edit Page</a>
+                                    <a class="dropdown-item" href="{% url 'user_profile' user.pk %}">My Page</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{% url 'account_logout' %}">Log out</a>
                                 </div>

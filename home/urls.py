@@ -18,8 +18,6 @@ urlpatterns = [
          views.PostDetail.as_view(), name='post_detail'),
     path('posts/<slug:slug>/update/',
          views.UpdatePost.as_view(), name='update_post'),
-    path('userprofile/<int:pk>',
+    path('userprofile/<slug:slug>/userprofile',
          views.UserProfile.as_view(), name='user_profile'),
-    path('profile/<slug:slug>/update/',
-         views.UpdateProfile.as_view(), name='update_profile'),
 ]

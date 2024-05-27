@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from .models import Post, Comment, UserProfile
-from .forms import CommentForm, ProfileForm, PostForm, EditProfileForm
+from .forms import CommentForm, ProfileForm, PostForm
 
 
 class Home(generic.TemplateView):
@@ -259,43 +259,15 @@ class PostLike(View):
             post.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
-
-
+    
+    
 class UserProfile(LoginRequiredMixin, generic.DetailView):
     model = UserProfile
-    form_class = ProfileForm
     template_name = 'user_profile.html'
 
+    def __str__(self,):
+         return  f"UserProfile {self.user}by{self.bio}"
 
-def user_profile(request, pk):
-    return render(request, 'user_profile.html')
-
-
-class UpdateProfile(
-    SuccessMessageMixin, generic.UpdateView):
-    form_class = EditProfileForm
-    template_name = 'update_profile.html'
-
-
-def update_profile(request):
-    if request.method == "POST":
-        p_form = ProfileForm(request.POST, instance=request.user)
-        e_form = EditProfileForm(request.POST, request.FILES, instance=request.user.user_profile)
-        if p_form.is_valid() and e_form.is_valid():
-            p_form.save()
-            e_form.save()
-            message.success(request, f'Your edited successfully')
-            return redirect('user_profile')
-    else:
-        p_form = ProfileForm(instance=request.user)
-        e_form = EditProfileForm(instance=request.user.user_profile)
-
-    context = {
-        'p_form': p_form,
-        'e_form': e_form
-    }
-    return render(request, 'update_profile.html', context)
-
-
+    
 class AboutPage(generic.TemplateView):
     template_name = "about.html"

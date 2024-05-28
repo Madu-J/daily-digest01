@@ -51,7 +51,9 @@
   - [Content Moderation (uac 15)](#content-moderation-uac-15)
   - [JS Bundling](#js-bundling)
   - [**Feature considerations**](#feature-considerations)
-- [Testing](#testing)
+  - [Testing](#testing)
+  - [Bugs](#bugs)
+  - [Fixed bugs](#fixed-bugs)
   - [User Story Testing](#user-story-testing)
     - [Blog Host](#blog-host)
 - [Deployment](#deployment)
@@ -413,6 +415,10 @@ Buttons for reporting undesirable content on a website will allow users to quick
 Buttons that provide the ability for users to share content on social media allow for an increase in the reach and visibility of the content. This can lead to more traffic to the website and ultimately more engagement. The buttons make it easy for users to share content with their friends and followers on social media.
 When content is shared on social media, it includes a link back to the website. This can help with branding, as it increases the visibility of the website and its content, increasing positive impact.
 
+### Future Features
+- Edit Profile feature
+- Gallery page
+
 # Testing
 
 ## User Story Testing
@@ -449,6 +455,19 @@ I have tested this project code by
 ![form-tested](media/form.png)
 ![url-tested](media/url.png)
 ![admin.tested](media/adminn.png)
+
+### Bugs
+- Migration issue
+- Dropdown
+- Problem signing out
+- New look on the UI, there may be changes in some uploaded images.
+
+### Fixed bugs
+- Migration issue fixed led to database change.
+- Dropdown expands but not displaying.
+
+### Remaining bug
+- None
 
 ### Blog Host
 

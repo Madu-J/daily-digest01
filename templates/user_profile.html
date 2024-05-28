@@ -26,6 +26,7 @@
             
                 <form method="post" class="add-post mb-5" enctype="multipart/form-data">
                     {{ form | crispy }}
+                    {% csrf_token %}
 
                 {% comment %}
                     <!--<button type="submit" class="btn btn-outline-dark">Edit Page</button>

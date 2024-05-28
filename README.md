@@ -1,5 +1,5 @@
 # Daily Digest Website (Milestone Project 4)
-![mockup](media/mockup.png)
+![mockup](media/resp.png)
 
 [Daily Digest](https://daily-digest01-135da823c1d2.herokuapp.com/) is an online news and personal publisher dedicated to bringing you news and happening around the globe.
 
@@ -63,6 +63,9 @@
       - [Step 4](#step-4)
       - [Step 5](#step-5)
     - [Second step](#second-step)
+- [Credit](#credit)
+    - [Media](#media)
+    - [Images](#images)
 
 ## Purpose
 
@@ -191,12 +194,12 @@ User Acceptance Criteria based on the user stories:
 ### My Post
 
 - Shows post Created by loggin user.
-![My POst](media/mypost.png).
+![My-POst](media/mypost.png).
 
 ### My Page
 
 - User profile page.
-![](media/mypage.png).
+![](media/mypage.png)(media/page.png)
 
 
 ####
@@ -225,7 +228,7 @@ User Acceptance Criteria based on the user stories:
 
 ### Sign In Page
 
-![](media/signin.png)
+![](media/signin.png)(media/s-up (2).png)
 
 - Allows user to sign in
 
@@ -357,6 +360,7 @@ One of the main reasons I chose to use [django-allauth](https://django-allauth.r
 ![](signup.png)
 
 The project uses Django's built-in User model, which means that users can register and log in to the website with email, username. However, users will not be logged in automatically after resetting their password. The ACCOUNT_SESSION_REMEMBER is set to True which means that the session will be remembered even if the user closes the browser.
+![SignUp](media/S-UP.png)(media/s-up (2).png)
 
 ### Reset password ([uac 18](#uac18))
 
@@ -527,8 +531,15 @@ This project was deployed using Code Institute's mock terminal for Heroku and th
 ### Credit
 
 - AliOKeeffe <https://github.com/AliOKeeffe>
-- Desphixs
 - Code Institute, I think before I blog tutorial.
 - Slack Overflow
 - Some good tutors at Code Institute.
 - Anto Rodriguez "Mentor"
+
+# Media
+ - Desphixs
+ - Code Institute, I think before I blog tutorial.
+
+# Image
+ - Cloudinary media-library images
+ - The Noun Project
